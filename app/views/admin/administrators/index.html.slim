@@ -1,0 +1,19 @@
+- breadcrumb :administrators
+
+.col-md-12
+  .panel.panel-default
+    .panel-heading
+      h4.panel-title All Administrators
+    table.table.table-striped
+      thead
+        th Name
+        th Email
+        th.text-right= link_to 'New Administrator', new_admin_administrator_path, class: 'btn btn-primary btn-sm'
+      tbody
+        - @administrators.each do |admin|
+          tr
+            td= admin.full_name
+            td= admin.email
+            td.text-right
+              = edit_link(admin)
+              = delete_link(admin)

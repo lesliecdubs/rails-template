@@ -1,0 +1,19 @@
+- breadcrumb :new_administrator
+
+- content_for :errors do |e|
+  = list_errors(@administrator.errors.full_messages)
+
+.col-md-12
+  .panel.panel-default
+    .panel-heading
+      h4.panel-title New Administrator
+    .panel-body
+      = simple_form_for [:admin, @administrator] do |f|
+        .form-inputs
+          = f.input :first_name, autofocus: true, input_html: { class: 'form-control' }
+          = f.input :last_name, input_html: { class: 'form-control' }
+          = f.input :email, required: true, input_html: { class: 'form-control' }
+          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control' }
+          = f.input :password_confirmation, required: true, hint: 'Passwords should be at least 8 characters long and include capitals, numbers and symbols.', input_html: { class: 'form-control' }
+        .form-actions
+          = f.submit class: 'btn btn-primary'

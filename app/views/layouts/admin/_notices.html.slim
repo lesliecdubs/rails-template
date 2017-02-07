@@ -1,0 +1,7 @@
+- flash.each do |k, v|
+  - next if k == 'timedout'
+
+  .alert class="#{flash_class(k)}"
+    button.close type='button' data-dismiss="alert" &times;
+    = v
+    = content_for(:errors)

@@ -1,0 +1,1658 @@
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from <top (required)> at /Users/lbass/Sites/dataminr/config/environment.rb:6)
+** [Honeybadger] Starting Honeybadger version 2.7.2 level=1 pid=7261
+** [Honeybadger] Initializing development backend: data will not be reported. level=2 pid=7261
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5263340357127399645);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateVersions (20150520190608)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class CreateVersions < ActiveRecord::Migration[4.2] (called from load at /Users/lbass/.rvm/gems/ruby-2.3.1/bin/rake:23)
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "versions" ("id" serial primary key, "item_type" character varying NOT NULL, "item_id" integer NOT NULL, "event" character varying NOT NULL, "whodunnit" character varying, "object" text, "created_at" timestamp)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_versions_on_item_type_and_item_id" ON "versions"  ("item_type", "item_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20150520190608"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateAdministrators (20160803144151)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+DEPRECATION WARNING: Directly inheriting from ActiveRecord::Migration is deprecated. Please specify the Rails release the migration was written for:
+
+  class DeviseCreateAdministrators < ActiveRecord::Migration[4.2] (called from load at /Users/lbass/.rvm/gems/ruby-2.3.1/bin/rake:23)
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "administrators" ("id" serial primary key, "first_name" character varying, "last_name" character varying, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_administrators_on_email" ON "administrators"  ("email")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_administrators_on_reset_password_token" ON "administrators"  ("reset_password_token")[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_administrators_on_confirmation_token" ON "administrators"  ("confirmation_token")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160803144151"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-07 16:17:48 UTC], ["updated_at", 2017-02-07 16:17:48 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5263340357127399645)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'administrators'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'versions'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdministrator Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "administrators" WHERE "administrators"."email" = $1 LIMIT $2[0m  [["email", "admin@canvas.is"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "administrators" ("first_name", "last_name", "email", "encrypted_password", "confirmed_at", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "Canvas"], ["last_name", "Admin"], ["email", "admin@canvas.is"], ["encrypted_password", "$2a$11$N/fHcsGZQu923tHYjRIzR.LzviXl0yDmdN1sL6bYb0rLOZSbTvUnG"], ["confirmed_at", 2017-02-07 16:17:48 UTC], ["created_at", 2017-02-07 16:17:48 UTC], ["updated_at", 2017-02-07 16:17:48 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+** [Honeybadger] Starting Honeybadger version 2.7.2 level=1 pid=7826
+** [Honeybadger] Initializing development backend: data will not be reported. level=2 pid=7826
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from block (2 levels) in <top (required)> at /Users/lbass/Sites/dataminr/config/environments/development.rb:61)
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms state=ready
+Started GET "/" for ::1 at 2017-02-07 11:12:22 -0600
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=1ms state=active
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"index"}
+  Rendering pages/index.html.slim within layouts/application
+  Rendered pages/index.html.slim within layouts/application (12.4ms)
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=1004ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=2003ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=3003ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-11yhcxa" -
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=4004ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=5003ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=6004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-jy0uco" -
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=7005ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1cblse3" -
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=8005ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=9004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-uzl3l1" -
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=10005ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=11005ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=12027ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=13002ms state=active
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=14014ms state=active
+Completed 200 OK in 14034ms (Views: 14021.3ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=7489fbae2d315ff3618ae2244e596676 timeout=15000ms service=14129ms state=completed
+source=rack-timeout id=573ca2a4e70c0653b38351f937a18e18 timeout=15000ms state=ready
+source=rack-timeout id=573ca2a4e70c0653b38351f937a18e18 timeout=15000ms service=8ms state=active
+source=rack-timeout id=573ca2a4e70c0653b38351f937a18e18 timeout=15000ms service=22ms state=completed
+source=rack-timeout id=c8dfeda94cd3e538cb18d4c565b165ca timeout=15000ms state=ready
+source=rack-timeout id=e7fbe82c703454eabf6c4d53342a56ec timeout=15000ms state=ready
+source=rack-timeout id=c8dfeda94cd3e538cb18d4c565b165ca timeout=15000ms service=0ms state=active
+source=rack-timeout id=e7fbe82c703454eabf6c4d53342a56ec timeout=15000ms service=0ms state=active
+source=rack-timeout id=4a628ee0f58495af1108fe59e708b359 timeout=15000ms state=ready
+source=rack-timeout id=6c7d3c66acb8f845662cc8e729b36890 timeout=15000ms state=ready
+source=rack-timeout id=4a628ee0f58495af1108fe59e708b359 timeout=15000ms service=11ms state=active
+source=rack-timeout id=6c7d3c66acb8f845662cc8e729b36890 timeout=15000ms service=11ms state=active
+source=rack-timeout id=c8dfeda94cd3e538cb18d4c565b165ca timeout=15000ms service=30ms state=completed
+source=rack-timeout id=4a628ee0f58495af1108fe59e708b359 timeout=15000ms service=34ms state=completed
+source=rack-timeout id=e7fbe82c703454eabf6c4d53342a56ec timeout=15000ms service=40ms state=completed
+source=rack-timeout id=6c7d3c66acb8f845662cc8e729b36890 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=4ccbcda3cf8a55aaeb5a1b6b6fa9528e timeout=15000ms state=ready
+source=rack-timeout id=4ccbcda3cf8a55aaeb5a1b6b6fa9528e timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:17:41 -0600
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"index"}
+  Rendering pages/index.html.slim within layouts/application
+  Rendered pages/index.html.slim within layouts/application (2.7ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-pr70c2" -
+source=rack-timeout id=4ccbcda3cf8a55aaeb5a1b6b6fa9528e timeout=15000ms service=1003ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-eory6y" -
+source=rack-timeout id=4ccbcda3cf8a55aaeb5a1b6b6fa9528e timeout=15000ms service=2005ms state=active
+Completed 200 OK in 2271ms (Views: 2269.5ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=4ccbcda3cf8a55aaeb5a1b6b6fa9528e timeout=15000ms service=2279ms state=completed
+source=rack-timeout id=222fb9568546699e2f0e1705fbcf9aba timeout=15000ms state=ready
+source=rack-timeout id=222fb9568546699e2f0e1705fbcf9aba timeout=15000ms service=1ms state=active
+source=rack-timeout id=9533c6355d575621a8f304ad5e26d591 timeout=15000ms state=ready
+source=rack-timeout id=0c4459ffd919e4360b5252983ebfda07 timeout=15000ms state=ready
+source=rack-timeout id=df64531d40cf1e91bf0c365b1fd3cc7d timeout=15000ms state=ready
+source=rack-timeout id=9533c6355d575621a8f304ad5e26d591 timeout=15000ms service=4ms state=active
+source=rack-timeout id=0c4459ffd919e4360b5252983ebfda07 timeout=15000ms service=4ms state=active
+source=rack-timeout id=df64531d40cf1e91bf0c365b1fd3cc7d timeout=15000ms service=0ms state=active
+source=rack-timeout id=c0a47453f8f9b2461193f2ecf39c766b timeout=15000ms state=ready
+source=rack-timeout id=c0a47453f8f9b2461193f2ecf39c766b timeout=15000ms service=2ms state=active
+source=rack-timeout id=222fb9568546699e2f0e1705fbcf9aba timeout=15000ms service=45ms state=completed
+source=rack-timeout id=9533c6355d575621a8f304ad5e26d591 timeout=15000ms service=44ms state=completed
+source=rack-timeout id=df64531d40cf1e91bf0c365b1fd3cc7d timeout=15000ms service=47ms state=completed
+source=rack-timeout id=0c4459ffd919e4360b5252983ebfda07 timeout=15000ms service=52ms state=completed
+source=rack-timeout id=c0a47453f8f9b2461193f2ecf39c766b timeout=15000ms service=49ms state=completed
+source=rack-timeout id=f79bd771b77eff6dd4a950172656193a timeout=15000ms state=ready
+source=rack-timeout id=39759543c2893d02aec2ccc4de6f9625 timeout=15000ms state=ready
+source=rack-timeout id=f79bd771b77eff6dd4a950172656193a timeout=15000ms service=1ms state=active
+source=rack-timeout id=1b254cc5201aeda17f781fb0af52aafd timeout=15000ms state=ready
+source=rack-timeout id=c5ed4e8d83c9003d4ab83bb351149d44 timeout=15000ms state=ready
+source=rack-timeout id=39759543c2893d02aec2ccc4de6f9625 timeout=15000ms service=15ms state=active
+source=rack-timeout id=f79bd771b77eff6dd4a950172656193a timeout=15000ms service=28ms state=completed
+source=rack-timeout id=39759543c2893d02aec2ccc4de6f9625 timeout=15000ms service=29ms state=completed
+source=rack-timeout id=1b254cc5201aeda17f781fb0af52aafd timeout=15000ms service=15ms state=active
+source=rack-timeout id=8641a103194019bfec23bfb598672722 timeout=15000ms state=ready
+source=rack-timeout id=c5ed4e8d83c9003d4ab83bb351149d44 timeout=15000ms service=18ms state=active
+source=rack-timeout id=8641a103194019bfec23bfb598672722 timeout=15000ms service=11ms state=active
+source=rack-timeout id=8641a103194019bfec23bfb598672722 timeout=15000ms service=23ms state=completed
+source=rack-timeout id=1faae2c5bf2c4719f117a861ced38b8b timeout=15000ms state=ready
+source=rack-timeout id=7f0da4ed93ab89fee12f4c1e49a17217 timeout=15000ms state=ready
+source=rack-timeout id=1faae2c5bf2c4719f117a861ced38b8b timeout=15000ms service=1ms state=active
+source=rack-timeout id=7f0da4ed93ab89fee12f4c1e49a17217 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=1faae2c5bf2c4719f117a861ced38b8b timeout=15000ms service=34ms state=completed
+source=rack-timeout id=0d00007b37a8693151bc61903973dd75 timeout=15000ms state=ready
+source=rack-timeout id=ca8dc9ae590091a60ab6fef52ab81238 timeout=15000ms state=ready
+source=rack-timeout id=0d00007b37a8693151bc61903973dd75 timeout=15000ms service=23ms state=active
+source=rack-timeout id=ca8dc9ae590091a60ab6fef52ab81238 timeout=15000ms service=5ms state=active
+source=rack-timeout id=c5ed4e8d83c9003d4ab83bb351149d44 timeout=15000ms service=108ms state=completed
+source=rack-timeout id=2a00c86aaad07469728a9bee6e611278 timeout=15000ms state=ready
+source=rack-timeout id=ca8dc9ae590091a60ab6fef52ab81238 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=2a00c86aaad07469728a9bee6e611278 timeout=15000ms service=22ms state=active
+source=rack-timeout id=1b254cc5201aeda17f781fb0af52aafd timeout=15000ms service=155ms state=completed
+source=rack-timeout id=0d00007b37a8693151bc61903973dd75 timeout=15000ms service=80ms state=completed
+source=rack-timeout id=6632b78e0b7428c4c7c6badc8b660994 timeout=15000ms state=ready
+source=rack-timeout id=2a00c86aaad07469728a9bee6e611278 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=c13212e46d2e8e7b4b2aa5676c67537f timeout=15000ms state=ready
+source=rack-timeout id=6632b78e0b7428c4c7c6badc8b660994 timeout=15000ms service=6ms state=active
+source=rack-timeout id=c13212e46d2e8e7b4b2aa5676c67537f timeout=15000ms service=2ms state=active
+source=rack-timeout id=2a5bfde55cc7740b5619c660b6c152f4 timeout=15000ms state=ready
+source=rack-timeout id=2a5bfde55cc7740b5619c660b6c152f4 timeout=15000ms service=1ms state=active
+source=rack-timeout id=e0c658918656a93da157f8cf8912e962 timeout=15000ms state=ready
+source=rack-timeout id=2a5bfde55cc7740b5619c660b6c152f4 timeout=15000ms service=23ms state=completed
+source=rack-timeout id=11111b148bae25579185add00c61e2fb timeout=15000ms state=ready
+source=rack-timeout id=e0c658918656a93da157f8cf8912e962 timeout=15000ms service=22ms state=active
+source=rack-timeout id=c13212e46d2e8e7b4b2aa5676c67537f timeout=15000ms service=40ms state=completed
+source=rack-timeout id=6632b78e0b7428c4c7c6badc8b660994 timeout=15000ms service=47ms state=completed
+source=rack-timeout id=e0c658918656a93da157f8cf8912e962 timeout=15000ms service=33ms state=completed
+source=rack-timeout id=11111b148bae25579185add00c61e2fb timeout=15000ms service=19ms state=completed
+source=rack-timeout id=c7346542c49ada25494b4b95ed76563a timeout=15000ms state=ready
+source=rack-timeout id=11111b148bae25579185add00c61e2fb timeout=15000ms service=19ms state=completed
+source=rack-timeout id=c7346542c49ada25494b4b95ed76563a timeout=15000ms service=9ms state=active
+source=rack-timeout id=c7346542c49ada25494b4b95ed76563a timeout=15000ms service=26ms state=completed
+source=rack-timeout id=f377ea7a8227b1d1a915aa549a71df2b timeout=15000ms state=ready
+source=rack-timeout id=f377ea7a8227b1d1a915aa549a71df2b timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:18:02 -0600
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"index"}
+  Rendering pages/index.html.slim within layouts/application
+  Rendered pages/index.html.slim within layouts/application (2.7ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1s9s9c4" -
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-l7g52b" -
+source=rack-timeout id=f377ea7a8227b1d1a915aa549a71df2b timeout=15000ms service=1004ms state=active
+source=rack-timeout id=f377ea7a8227b1d1a915aa549a71df2b timeout=15000ms service=2005ms state=active
+Completed 200 OK in 2178ms (Views: 2176.7ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=f377ea7a8227b1d1a915aa549a71df2b timeout=15000ms service=2186ms state=completed
+source=rack-timeout id=0e1ce879410df80327742cf636339487 timeout=15000ms state=ready
+source=rack-timeout id=0e1ce879410df80327742cf636339487 timeout=15000ms service=1ms state=active
+source=rack-timeout id=6aa898f56997309c128b54e0d4e7d9b0 timeout=15000ms state=ready
+source=rack-timeout id=e44686bdd55ad96c13c5d5308701e8f9 timeout=15000ms state=ready
+source=rack-timeout id=ac179602c9d7d0b2a637fc9a9278f8f6 timeout=15000ms state=ready
+source=rack-timeout id=b660528a7d640716dbb7b4fd86c9d417 timeout=15000ms state=ready
+source=rack-timeout id=6aa898f56997309c128b54e0d4e7d9b0 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=e44686bdd55ad96c13c5d5308701e8f9 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=0e1ce879410df80327742cf636339487 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=6aa898f56997309c128b54e0d4e7d9b0 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=b660528a7d640716dbb7b4fd86c9d417 timeout=15000ms service=63ms state=completed
+source=rack-timeout id=ac179602c9d7d0b2a637fc9a9278f8f6 timeout=15000ms service=64ms state=completed
+source=rack-timeout id=ac179602c9d7d0b2a637fc9a9278f8f6 timeout=15000ms service=64ms state=completed
+source=rack-timeout id=ad5766fe8f7eb36b4f59171daff87c40 timeout=15000ms state=ready
+source=rack-timeout id=ad5766fe8f7eb36b4f59171daff87c40 timeout=15000ms service=8ms state=active
+source=rack-timeout id=10c35fd072c1c082cfa613bf9d0a1049 timeout=15000ms state=ready
+source=rack-timeout id=5326f5dc0d0135f5027d3fd528ddfcb7 timeout=15000ms state=ready
+source=rack-timeout id=ad5766fe8f7eb36b4f59171daff87c40 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=10c35fd072c1c082cfa613bf9d0a1049 timeout=15000ms service=14ms state=active
+source=rack-timeout id=2659f11782f7d7d178d8d77602c0d1a4 timeout=15000ms state=ready
+source=rack-timeout id=10c35fd072c1c082cfa613bf9d0a1049 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=5326f5dc0d0135f5027d3fd528ddfcb7 timeout=15000ms service=15ms state=active
+source=rack-timeout id=2659f11782f7d7d178d8d77602c0d1a4 timeout=15000ms service=9ms state=active
+source=rack-timeout id=2659f11782f7d7d178d8d77602c0d1a4 timeout=15000ms service=20ms state=completed
+source=rack-timeout id=5326f5dc0d0135f5027d3fd528ddfcb7 timeout=15000ms service=35ms state=completed
+source=rack-timeout id=4e51438cdc621c92da46a5b61ea4665b timeout=15000ms state=ready
+source=rack-timeout id=4e51438cdc621c92da46a5b61ea4665b timeout=15000ms service=3ms state=active
+source=rack-timeout id=162ac137926cb4033055ab367abbdcbd timeout=15000ms state=ready
+source=rack-timeout id=244ab814911fdc4c127a05249a73d871 timeout=15000ms state=ready
+source=rack-timeout id=0499b807d2d5494b14f14870c2faf7a6 timeout=15000ms state=ready
+source=rack-timeout id=4e51438cdc621c92da46a5b61ea4665b timeout=15000ms service=14ms state=completed
+source=rack-timeout id=12a838aadb8dc1a073e9b51e3d760fbd timeout=15000ms state=ready
+source=rack-timeout id=162ac137926cb4033055ab367abbdcbd timeout=15000ms service=11ms state=completed
+source=rack-timeout id=162ac137926cb4033055ab367abbdcbd timeout=15000ms service=11ms state=completed
+source=rack-timeout id=244ab814911fdc4c127a05249a73d871 timeout=15000ms service=21ms state=active
+source=rack-timeout id=0499b807d2d5494b14f14870c2faf7a6 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=0499b807d2d5494b14f14870c2faf7a6 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=554ee54b05adfefe9a9fc325f0df88a3 timeout=15000ms state=ready
+source=rack-timeout id=12a838aadb8dc1a073e9b51e3d760fbd timeout=15000ms service=29ms state=active
+source=rack-timeout id=244ab814911fdc4c127a05249a73d871 timeout=15000ms service=37ms state=completed
+source=rack-timeout id=c82af48d319d47256aa2f29e5867b323 timeout=15000ms state=ready
+source=rack-timeout id=554ee54b05adfefe9a9fc325f0df88a3 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=c82af48d319d47256aa2f29e5867b323 timeout=15000ms service=51ms state=active
+source=rack-timeout id=12a838aadb8dc1a073e9b51e3d760fbd timeout=15000ms service=52ms state=completed
+source=rack-timeout id=554ee54b05adfefe9a9fc325f0df88a3 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=0bd42b23c79d1642215d7c9f35d03008 timeout=15000ms state=ready
+source=rack-timeout id=0bd42b23c79d1642215d7c9f35d03008 timeout=15000ms service=30ms state=active
+source=rack-timeout id=875190e7173ea83e8e9b51d6a9cf01e5 timeout=15000ms state=ready
+source=rack-timeout id=875190e7173ea83e8e9b51d6a9cf01e5 timeout=15000ms service=0ms state=active
+source=rack-timeout id=c82af48d319d47256aa2f29e5867b323 timeout=15000ms service=80ms state=completed
+source=rack-timeout id=c24b73fcd95f3c7cd12e536f80cc5caf timeout=15000ms state=ready
+source=rack-timeout id=0499a6c315c3b9c1b76eb7b3e958c641 timeout=15000ms state=ready
+source=rack-timeout id=0bd42b23c79d1642215d7c9f35d03008 timeout=15000ms service=69ms state=completed
+source=rack-timeout id=c24b73fcd95f3c7cd12e536f80cc5caf timeout=15000ms service=7ms state=active
+source=rack-timeout id=875190e7173ea83e8e9b51d6a9cf01e5 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=98562e444172a0ab490e9e3269ce87b9 timeout=15000ms state=ready
+source=rack-timeout id=c24b73fcd95f3c7cd12e536f80cc5caf timeout=15000ms service=24ms state=completed
+source=rack-timeout id=0499a6c315c3b9c1b76eb7b3e958c641 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=98562e444172a0ab490e9e3269ce87b9 timeout=15000ms service=17ms state=active
+source=rack-timeout id=0499a6c315c3b9c1b76eb7b3e958c641 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=98562e444172a0ab490e9e3269ce87b9 timeout=15000ms service=42ms state=completed
+source=rack-timeout id=a33e821c328712d3b37c12f077d1ceb7 timeout=15000ms state=ready
+source=rack-timeout id=a33e821c328712d3b37c12f077d1ceb7 timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:18:16 -0600
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"index"}
+  Rendering pages/index.html.slim within layouts/application
+  Rendered pages/index.html.slim within layouts/application (3.3ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-u3d0c1" -
+source=rack-timeout id=a33e821c328712d3b37c12f077d1ceb7 timeout=15000ms service=1004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1h5lt2l" -
+source=rack-timeout id=a33e821c328712d3b37c12f077d1ceb7 timeout=15000ms service=2003ms state=active
+Completed 200 OK in 2675ms (Views: 2674.3ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=a33e821c328712d3b37c12f077d1ceb7 timeout=15000ms service=2685ms state=completed
+source=rack-timeout id=2075b1bbf5684c4964897c686e7b82d5 timeout=15000ms state=ready
+source=rack-timeout id=8ddc153b51f05f08658d3729fc5c36a6 timeout=15000ms state=ready
+source=rack-timeout id=fd2e44848852edf76b6de9589cf9dfde timeout=15000ms state=ready
+source=rack-timeout id=9e45dfdd89881fd1f4fb6c3838701c03 timeout=15000ms state=ready
+source=rack-timeout id=5249597e6bbd6a2d22ebab9eee74ec5b timeout=15000ms state=ready
+source=rack-timeout id=2075b1bbf5684c4964897c686e7b82d5 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=2075b1bbf5684c4964897c686e7b82d5 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=8ddc153b51f05f08658d3729fc5c36a6 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=fd2e44848852edf76b6de9589cf9dfde timeout=15000ms service=37ms state=completed
+source=rack-timeout id=fd2e44848852edf76b6de9589cf9dfde timeout=15000ms service=37ms state=completed
+source=rack-timeout id=5249597e6bbd6a2d22ebab9eee74ec5b timeout=15000ms service=56ms state=completed
+source=rack-timeout id=9e45dfdd89881fd1f4fb6c3838701c03 timeout=15000ms service=58ms state=completed
+source=rack-timeout id=681c89d7442db79b760798c3c5d45b0d timeout=15000ms state=ready
+source=rack-timeout id=681c89d7442db79b760798c3c5d45b0d timeout=15000ms service=6ms state=active
+source=rack-timeout id=6847700033330d91b6402f307521a7c4 timeout=15000ms state=ready
+source=rack-timeout id=6847700033330d91b6402f307521a7c4 timeout=15000ms service=0ms state=active
+source=rack-timeout id=6847700033330d91b6402f307521a7c4 timeout=15000ms service=14ms state=completed
+source=rack-timeout id=681c89d7442db79b760798c3c5d45b0d timeout=15000ms service=94ms state=completed
+source=rack-timeout id=b6e833dea156e5b23cc5b90519b727e4 timeout=15000ms state=ready
+source=rack-timeout id=b6e833dea156e5b23cc5b90519b727e4 timeout=15000ms service=0ms state=active
+source=rack-timeout id=b6e833dea156e5b23cc5b90519b727e4 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=7e8d3570c5bf947997597f3bb2bd4a23 timeout=15000ms state=ready
+source=rack-timeout id=7e8d3570c5bf947997597f3bb2bd4a23 timeout=15000ms service=2ms state=active
+source=rack-timeout id=7e8d3570c5bf947997597f3bb2bd4a23 timeout=15000ms service=42ms state=completed
+source=rack-timeout id=eebe98cb0cb7e0fcd9e3df6602048c13 timeout=15000ms state=ready
+source=rack-timeout id=eebe98cb0cb7e0fcd9e3df6602048c13 timeout=15000ms service=1ms state=active
+source=rack-timeout id=f09a7093bf81c94a834d1bfa0145521d timeout=15000ms state=ready
+source=rack-timeout id=f09a7093bf81c94a834d1bfa0145521d timeout=15000ms service=0ms state=active
+source=rack-timeout id=0f4e0b555547ef416f6c009d26b9ff60 timeout=15000ms state=ready
+source=rack-timeout id=f09a7093bf81c94a834d1bfa0145521d timeout=15000ms service=22ms state=completed
+source=rack-timeout id=16b36b1a2a5d18609577e93bc00b914c timeout=15000ms state=ready
+source=rack-timeout id=0f4e0b555547ef416f6c009d26b9ff60 timeout=15000ms service=23ms state=active
+source=rack-timeout id=16b36b1a2a5d18609577e93bc00b914c timeout=15000ms service=15ms state=active
+source=rack-timeout id=477576b3971999f4683c771b10ed271c timeout=15000ms state=ready
+source=rack-timeout id=477576b3971999f4683c771b10ed271c timeout=15000ms service=15ms state=active
+source=rack-timeout id=eebe98cb0cb7e0fcd9e3df6602048c13 timeout=15000ms service=67ms state=completed
+source=rack-timeout id=16b36b1a2a5d18609577e93bc00b914c timeout=15000ms service=49ms state=completed
+source=rack-timeout id=477576b3971999f4683c771b10ed271c timeout=15000ms service=51ms state=completed
+source=rack-timeout id=d3aea4d82da4c10478892e31a3dc36bd timeout=15000ms state=ready
+source=rack-timeout id=0c15523b49afc60db253836f3fa01ee9 timeout=15000ms state=ready
+source=rack-timeout id=d3aea4d82da4c10478892e31a3dc36bd timeout=15000ms service=48ms state=completed
+source=rack-timeout id=7120935650cc2fa3be8131e9e2b83bb7 timeout=15000ms state=ready
+source=rack-timeout id=d3aea4d82da4c10478892e31a3dc36bd timeout=15000ms service=48ms state=completed
+source=rack-timeout id=ad3d0f66930185e4e4bd50d2451bff63 timeout=15000ms state=ready
+source=rack-timeout id=0c15523b49afc60db253836f3fa01ee9 timeout=15000ms service=61ms state=completed
+source=rack-timeout id=7120935650cc2fa3be8131e9e2b83bb7 timeout=15000ms service=68ms state=active
+source=rack-timeout id=ad3d0f66930185e4e4bd50d2451bff63 timeout=15000ms service=48ms state=active
+source=rack-timeout id=0f4e0b555547ef416f6c009d26b9ff60 timeout=15000ms service=93ms state=completed
+source=rack-timeout id=0c15523b49afc60db253836f3fa01ee9 timeout=15000ms service=61ms state=completed
+source=rack-timeout id=d8a3995f160eedc5b96d91d1c70b57cb timeout=15000ms state=ready
+source=rack-timeout id=7120935650cc2fa3be8131e9e2b83bb7 timeout=15000ms service=89ms state=completed
+source=rack-timeout id=d8a3995f160eedc5b96d91d1c70b57cb timeout=15000ms service=29ms state=completed
+source=rack-timeout id=4af8281cbdf962681feeed3edef2549c timeout=15000ms state=ready
+source=rack-timeout id=ad3d0f66930185e4e4bd50d2451bff63 timeout=15000ms service=74ms state=completed
+source=rack-timeout id=d8a3995f160eedc5b96d91d1c70b57cb timeout=15000ms service=29ms state=completed
+source=rack-timeout id=4af8281cbdf962681feeed3edef2549c timeout=15000ms service=31ms state=completed
+source=rack-timeout id=36b124f14db2d32f7267b98fe2346197 timeout=15000ms state=ready
+source=rack-timeout id=4af8281cbdf962681feeed3edef2549c timeout=15000ms service=31ms state=completed
+source=rack-timeout id=36b124f14db2d32f7267b98fe2346197 timeout=15000ms service=17ms state=active
+source=rack-timeout id=36b124f14db2d32f7267b98fe2346197 timeout=15000ms service=44ms state=completed
+source=rack-timeout id=6f5e260d8b475bd8bd9e5f5c5adb079e timeout=15000ms state=ready
+source=rack-timeout id=6f5e260d8b475bd8bd9e5f5c5adb079e timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:18:23 -0600
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"index"}
+  Rendering pages/index.html.slim within layouts/application
+  Rendered pages/index.html.slim within layouts/application (3.2ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-75wbci" -
+source=rack-timeout id=6f5e260d8b475bd8bd9e5f5c5adb079e timeout=15000ms service=1003ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-ekxjg5" -
+source=rack-timeout id=6f5e260d8b475bd8bd9e5f5c5adb079e timeout=15000ms service=2004ms state=active
+Completed 200 OK in 2498ms (Views: 2496.4ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=6f5e260d8b475bd8bd9e5f5c5adb079e timeout=15000ms service=2508ms state=completed
+source=rack-timeout id=0d5d3b430f8f55fca37a0eaa1a2eb602 timeout=15000ms state=ready
+source=rack-timeout id=0d5d3b430f8f55fca37a0eaa1a2eb602 timeout=15000ms service=0ms state=active
+source=rack-timeout id=15805cbe82b88a4fd72045dfebb6e94f timeout=15000ms state=ready
+source=rack-timeout id=0d5d3b430f8f55fca37a0eaa1a2eb602 timeout=15000ms service=59ms state=completed
+source=rack-timeout id=15805cbe82b88a4fd72045dfebb6e94f timeout=15000ms service=31ms state=active
+source=rack-timeout id=d1b3e94e83d2689290f575aee55ca418 timeout=15000ms state=ready
+source=rack-timeout id=82022d14a00d02978226efc0b04db3bf timeout=15000ms state=ready
+source=rack-timeout id=d1b3e94e83d2689290f575aee55ca418 timeout=15000ms service=22ms state=active
+source=rack-timeout id=82022d14a00d02978226efc0b04db3bf timeout=15000ms service=14ms state=active
+source=rack-timeout id=fc989f682191c936e2040da107320cca timeout=15000ms state=ready
+source=rack-timeout id=6b9b1432f38fc2687cf475937df6bc4b timeout=15000ms state=ready
+source=rack-timeout id=15805cbe82b88a4fd72045dfebb6e94f timeout=15000ms service=47ms state=completed
+source=rack-timeout id=fc989f682191c936e2040da107320cca timeout=15000ms service=15ms state=active
+source=rack-timeout id=6b9b1432f38fc2687cf475937df6bc4b timeout=15000ms service=2ms state=active
+source=rack-timeout id=fc989f682191c936e2040da107320cca timeout=15000ms service=26ms state=completed
+source=rack-timeout id=6b9b1432f38fc2687cf475937df6bc4b timeout=15000ms service=24ms state=completed
+source=rack-timeout id=d1b3e94e83d2689290f575aee55ca418 timeout=15000ms service=66ms state=completed
+source=rack-timeout id=82022d14a00d02978226efc0b04db3bf timeout=15000ms service=61ms state=completed
+source=rack-timeout id=f9bbb4562bf390d45ceac114594a73d0 timeout=15000ms state=ready
+source=rack-timeout id=f9bbb4562bf390d45ceac114594a73d0 timeout=15000ms service=2ms state=active
+source=rack-timeout id=f9bbb4562bf390d45ceac114594a73d0 timeout=15000ms service=18ms state=completed
+source=rack-timeout id=43b64c497326099e2a3d3757705b44d0 timeout=15000ms state=ready
+source=rack-timeout id=76c135befa426817541605ea1eb9ef3a timeout=15000ms state=ready
+source=rack-timeout id=43b64c497326099e2a3d3757705b44d0 timeout=15000ms service=7ms state=active
+source=rack-timeout id=76c135befa426817541605ea1eb9ef3a timeout=15000ms service=0ms state=active
+source=rack-timeout id=6018c6fd1952d808d846afc202dedcb9 timeout=15000ms state=ready
+source=rack-timeout id=6018c6fd1952d808d846afc202dedcb9 timeout=15000ms service=18ms state=active
+source=rack-timeout id=76c135befa426817541605ea1eb9ef3a timeout=15000ms service=20ms state=completed
+source=rack-timeout id=6018c6fd1952d808d846afc202dedcb9 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=d09b43bce6fa5bc7968d6f436d392712 timeout=15000ms state=ready
+source=rack-timeout id=ade418b97e24bde094eda0e4f6b2aa13 timeout=15000ms state=ready
+source=rack-timeout id=d09b43bce6fa5bc7968d6f436d392712 timeout=15000ms service=5ms state=active
+source=rack-timeout id=c29d0f9c625afbe5d55dac243a6241c7 timeout=15000ms state=ready
+source=rack-timeout id=43b64c497326099e2a3d3757705b44d0 timeout=15000ms service=51ms state=completed
+source=rack-timeout id=d09b43bce6fa5bc7968d6f436d392712 timeout=15000ms service=17ms state=completed
+source=rack-timeout id=ade418b97e24bde094eda0e4f6b2aa13 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=c29d0f9c625afbe5d55dac243a6241c7 timeout=15000ms service=29ms state=active
+source=rack-timeout id=76dafd2d5e65a0a5a0fa44764c9fa353 timeout=15000ms state=ready
+source=rack-timeout id=0f26acddd86e7e5d4c42ac1aa1da1050 timeout=15000ms state=ready
+source=rack-timeout id=76dafd2d5e65a0a5a0fa44764c9fa353 timeout=15000ms service=44ms state=active
+source=rack-timeout id=0f26acddd86e7e5d4c42ac1aa1da1050 timeout=15000ms service=30ms state=active
+source=rack-timeout id=ade418b97e24bde094eda0e4f6b2aa13 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=c29d0f9c625afbe5d55dac243a6241c7 timeout=15000ms service=56ms state=completed
+source=rack-timeout id=0f26acddd86e7e5d4c42ac1aa1da1050 timeout=15000ms service=44ms state=completed
+source=rack-timeout id=3a9cb53674853048bc2343c7c62e0392 timeout=15000ms state=ready
+source=rack-timeout id=76dafd2d5e65a0a5a0fa44764c9fa353 timeout=15000ms service=78ms state=completed
+source=rack-timeout id=b2550b83bb6a461fe92d96d111db3577 timeout=15000ms state=ready
+source=rack-timeout id=1ae00c4f45dda1e2a93db63eab290b57 timeout=15000ms state=ready
+source=rack-timeout id=3a9cb53674853048bc2343c7c62e0392 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=3a9cb53674853048bc2343c7c62e0392 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=027f53fa452310440cbd008902401c78 timeout=15000ms state=ready
+source=rack-timeout id=b2550b83bb6a461fe92d96d111db3577 timeout=15000ms service=39ms state=active
+source=rack-timeout id=1ae00c4f45dda1e2a93db63eab290b57 timeout=15000ms service=49ms state=active
+source=rack-timeout id=252c0684e9278eee68b7acc6f738ae5d timeout=15000ms state=ready
+source=rack-timeout id=027f53fa452310440cbd008902401c78 timeout=15000ms service=34ms state=active
+source=rack-timeout id=ed8ede77f610c9bab82d7707d6bfcd2d timeout=15000ms state=ready
+source=rack-timeout id=252c0684e9278eee68b7acc6f738ae5d timeout=15000ms service=9ms state=active
+source=rack-timeout id=ed8ede77f610c9bab82d7707d6bfcd2d timeout=15000ms service=4ms state=active
+source=rack-timeout id=b2550b83bb6a461fe92d96d111db3577 timeout=15000ms service=61ms state=completed
+source=rack-timeout id=027f53fa452310440cbd008902401c78 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=1ae00c4f45dda1e2a93db63eab290b57 timeout=15000ms service=61ms state=completed
+source=rack-timeout id=ed8ede77f610c9bab82d7707d6bfcd2d timeout=15000ms service=26ms state=completed
+source=rack-timeout id=252c0684e9278eee68b7acc6f738ae5d timeout=15000ms service=49ms state=completed
+source=rack-timeout id=b426816162155a3893739b5b72a3a0ef timeout=15000ms state=ready
+source=rack-timeout id=b426816162155a3893739b5b72a3a0ef timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:25:11 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.0ms)
+Completed 200 OK in 56ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=b426816162155a3893739b5b72a3a0ef timeout=15000ms service=126ms state=completed
+source=rack-timeout id=d58a41c1f729a918ff59ef839cfc31d6 timeout=15000ms state=ready
+source=rack-timeout id=d58a41c1f729a918ff59ef839cfc31d6 timeout=15000ms service=6ms state=active
+source=rack-timeout id=43b39d2856089b923c5c89b75e56981a timeout=15000ms state=ready
+source=rack-timeout id=1e018144eb3641b73b98c10a27764afc timeout=15000ms state=ready
+source=rack-timeout id=aa804b3f0d648a322cfc33309e2c734c timeout=15000ms state=ready
+source=rack-timeout id=43b39d2856089b923c5c89b75e56981a timeout=15000ms service=27ms state=completed
+source=rack-timeout id=43b39d2856089b923c5c89b75e56981a timeout=15000ms service=27ms state=completed
+source=rack-timeout id=d58a41c1f729a918ff59ef839cfc31d6 timeout=15000ms service=33ms state=completed
+source=rack-timeout id=0ed36761760cd612bb0c6c85829791ec timeout=15000ms state=ready
+source=rack-timeout id=aa804b3f0d648a322cfc33309e2c734c timeout=15000ms service=24ms state=completed
+source=rack-timeout id=1e018144eb3641b73b98c10a27764afc timeout=15000ms service=36ms state=completed
+source=rack-timeout id=99260a61f78040bf9e41864e75e51db9 timeout=15000ms state=ready
+source=rack-timeout id=0ed36761760cd612bb0c6c85829791ec timeout=15000ms service=31ms state=active
+source=rack-timeout id=99260a61f78040bf9e41864e75e51db9 timeout=15000ms service=3ms state=active
+source=rack-timeout id=cbd66f3d75db65eb238678b153282d2a timeout=15000ms state=ready
+source=rack-timeout id=99260a61f78040bf9e41864e75e51db9 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=0104df7addb158a642052a934aa7ada0 timeout=15000ms state=ready
+source=rack-timeout id=cbd66f3d75db65eb238678b153282d2a timeout=15000ms service=9ms state=active
+source=rack-timeout id=813c071a4c8c186bd8dee821bddfc24d timeout=15000ms state=ready
+source=rack-timeout id=cbd66f3d75db65eb238678b153282d2a timeout=15000ms service=26ms state=completed
+source=rack-timeout id=0104df7addb158a642052a934aa7ada0 timeout=15000ms service=20ms state=active
+source=rack-timeout id=0ed36761760cd612bb0c6c85829791ec timeout=15000ms service=84ms state=completed
+source=rack-timeout id=813c071a4c8c186bd8dee821bddfc24d timeout=15000ms service=31ms state=active
+source=rack-timeout id=0104df7addb158a642052a934aa7ada0 timeout=15000ms service=33ms state=completed
+source=rack-timeout id=813c071a4c8c186bd8dee821bddfc24d timeout=15000ms service=34ms state=completed
+source=rack-timeout id=bf86b196b23ad674218e48187076f67b timeout=15000ms state=ready
+source=rack-timeout id=bf86b196b23ad674218e48187076f67b timeout=15000ms service=2ms state=active
+source=rack-timeout id=1abf337e971354483411633658d630f7 timeout=15000ms state=ready
+source=rack-timeout id=1abf337e971354483411633658d630f7 timeout=15000ms service=4ms state=active
+source=rack-timeout id=adb497e2fb9b0f9bc565c3df91ad4792 timeout=15000ms state=ready
+source=rack-timeout id=bf86b196b23ad674218e48187076f67b timeout=15000ms service=21ms state=completed
+source=rack-timeout id=11a54586c9580b5756a465423ad1dd79 timeout=15000ms state=ready
+source=rack-timeout id=adb497e2fb9b0f9bc565c3df91ad4792 timeout=15000ms service=2ms state=active
+source=rack-timeout id=c81571457f05918e965d2c540a271bda timeout=15000ms state=ready
+source=rack-timeout id=1abf337e971354483411633658d630f7 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=11a54586c9580b5756a465423ad1dd79 timeout=15000ms service=26ms state=active
+source=rack-timeout id=adb497e2fb9b0f9bc565c3df91ad4792 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=559127f83fef7047f7c6f585607c2577 timeout=15000ms state=ready
+source=rack-timeout id=c81571457f05918e965d2c540a271bda timeout=15000ms service=33ms state=completed
+source=rack-timeout id=559127f83fef7047f7c6f585607c2577 timeout=15000ms service=22ms state=active
+source=rack-timeout id=559127f83fef7047f7c6f585607c2577 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=11a54586c9580b5756a465423ad1dd79 timeout=15000ms service=70ms state=completed
+source=rack-timeout id=6a012b9e27387c304d7a2a3677121fc3 timeout=15000ms state=ready
+source=rack-timeout id=6a012b9e27387c304d7a2a3677121fc3 timeout=15000ms service=3ms state=active
+source=rack-timeout id=d79db470b9db043a24af3c9fb7686543 timeout=15000ms state=ready
+source=rack-timeout id=ca574dda9e3fba132a44c6ee668237da timeout=15000ms state=ready
+source=rack-timeout id=d79db470b9db043a24af3c9fb7686543 timeout=15000ms service=19ms state=active
+source=rack-timeout id=ca574dda9e3fba132a44c6ee668237da timeout=15000ms service=4ms state=active
+source=rack-timeout id=6a012b9e27387c304d7a2a3677121fc3 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=7e6c5605fd98918f75625e0dc7abd46c timeout=15000ms state=ready
+source=rack-timeout id=7e6c5605fd98918f75625e0dc7abd46c timeout=15000ms service=43ms state=active
+source=rack-timeout id=fb0d1e8e5024ade0030120779659d365 timeout=15000ms state=ready
+source=rack-timeout id=d79db470b9db043a24af3c9fb7686543 timeout=15000ms service=72ms state=completed
+source=rack-timeout id=fb0d1e8e5024ade0030120779659d365 timeout=15000ms service=65ms state=completed
+source=rack-timeout id=ca574dda9e3fba132a44c6ee668237da timeout=15000ms service=30ms state=completed
+source=rack-timeout id=7e6c5605fd98918f75625e0dc7abd46c timeout=15000ms service=77ms state=completed
+source=rack-timeout id=fb0d1e8e5024ade0030120779659d365 timeout=15000ms service=65ms state=completed
+source=rack-timeout id=f56fce7a72b574b156bfc13b1c47187e timeout=15000ms state=ready
+source=rack-timeout id=f56fce7a72b574b156bfc13b1c47187e timeout=15000ms service=0ms state=active
+source=rack-timeout id=f56fce7a72b574b156bfc13b1c47187e timeout=15000ms service=19ms state=completed
+source=rack-timeout id=76dc34e4e1fd35f59e98348dec8091ff timeout=15000ms state=ready
+source=rack-timeout id=76dc34e4e1fd35f59e98348dec8091ff timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:25:37 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (2.6ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-33z004" -
+source=rack-timeout id=76dc34e4e1fd35f59e98348dec8091ff timeout=15000ms service=1003ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1hn0mua" -
+source=rack-timeout id=76dc34e4e1fd35f59e98348dec8091ff timeout=15000ms service=2002ms state=active
+Completed 200 OK in 2204ms (Views: 2201.4ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=76dc34e4e1fd35f59e98348dec8091ff timeout=15000ms service=2222ms state=completed
+source=rack-timeout id=d8fed05c08bafd9fca318947e627b6dc timeout=15000ms state=ready
+source=rack-timeout id=890709a97779958eb60914d17fb401d7 timeout=15000ms state=ready
+source=rack-timeout id=55929cd1f6832ed2a06cde7499587331 timeout=15000ms state=ready
+source=rack-timeout id=3de772f7457db926eab89d358417b03d timeout=15000ms state=ready
+source=rack-timeout id=d8fed05c08bafd9fca318947e627b6dc timeout=15000ms service=44ms state=completed
+source=rack-timeout id=d8fed05c08bafd9fca318947e627b6dc timeout=15000ms service=44ms state=completed
+source=rack-timeout id=3de772f7457db926eab89d358417b03d timeout=15000ms service=34ms state=active
+source=rack-timeout id=7aeab180cab9ad48365fc18c5925cf91 timeout=15000ms state=ready
+source=rack-timeout id=7aeab180cab9ad48365fc18c5925cf91 timeout=15000ms service=51ms state=active
+source=rack-timeout id=890709a97779958eb60914d17fb401d7 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=3de772f7457db926eab89d358417b03d timeout=15000ms service=50ms state=completed
+source=rack-timeout id=55929cd1f6832ed2a06cde7499587331 timeout=15000ms service=37ms state=completed
+source=rack-timeout id=4d6149b51b1afb76128ff5c675113669 timeout=15000ms state=ready
+source=rack-timeout id=4d6149b51b1afb76128ff5c675113669 timeout=15000ms service=1ms state=active
+source=rack-timeout id=7aeab180cab9ad48365fc18c5925cf91 timeout=15000ms service=84ms state=completed
+source=rack-timeout id=325ff77eaa36f8075497d9a085ab413e timeout=15000ms state=ready
+source=rack-timeout id=146f7a0e3a752aaff460f725960cda76 timeout=15000ms state=ready
+source=rack-timeout id=4d6149b51b1afb76128ff5c675113669 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=325ff77eaa36f8075497d9a085ab413e timeout=15000ms service=2ms state=active
+source=rack-timeout id=57cea136fa6ab3ef3b2dfd7e64a27497 timeout=15000ms state=ready
+source=rack-timeout id=325ff77eaa36f8075497d9a085ab413e timeout=15000ms service=26ms state=completed
+source=rack-timeout id=146f7a0e3a752aaff460f725960cda76 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=146f7a0e3a752aaff460f725960cda76 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=7c02a036cf6429fef01ca44e110f57fc timeout=15000ms state=ready
+source=rack-timeout id=57cea136fa6ab3ef3b2dfd7e64a27497 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=a64447bd27d9b2272825e12d499c9271 timeout=15000ms state=ready
+source=rack-timeout id=8d01cac80d7cf0d21b62e129738beebe timeout=15000ms state=ready
+source=rack-timeout id=7c02a036cf6429fef01ca44e110f57fc timeout=15000ms service=21ms state=active
+source=rack-timeout id=a64447bd27d9b2272825e12d499c9271 timeout=15000ms service=22ms state=active
+source=rack-timeout id=8d01cac80d7cf0d21b62e129738beebe timeout=15000ms service=21ms state=active
+source=rack-timeout id=ed11f371f71056335d5742e65209651e timeout=15000ms state=ready
+source=rack-timeout id=7c02a036cf6429fef01ca44e110f57fc timeout=15000ms service=58ms state=completed
+source=rack-timeout id=8d01cac80d7cf0d21b62e129738beebe timeout=15000ms service=42ms state=completed
+source=rack-timeout id=d47a4ab8c64b8b8a1dca8593b947fe80 timeout=15000ms state=ready
+source=rack-timeout id=ed11f371f71056335d5742e65209651e timeout=15000ms service=21ms state=completed
+source=rack-timeout id=d47a4ab8c64b8b8a1dca8593b947fe80 timeout=15000ms service=26ms state=active
+source=rack-timeout id=ed11f371f71056335d5742e65209651e timeout=15000ms service=21ms state=completed
+source=rack-timeout id=a64447bd27d9b2272825e12d499c9271 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=d47a4ab8c64b8b8a1dca8593b947fe80 timeout=15000ms service=49ms state=completed
+source=rack-timeout id=5d1fd151d61f3928ce184facab7c6c61 timeout=15000ms state=ready
+source=rack-timeout id=b3b9edf57f491d03fe5cd19adbaa8fdc timeout=15000ms state=ready
+source=rack-timeout id=5d1fd151d61f3928ce184facab7c6c61 timeout=15000ms service=7ms state=active
+source=rack-timeout id=b3b9edf57f491d03fe5cd19adbaa8fdc timeout=15000ms service=8ms state=active
+source=rack-timeout id=b3b9edf57f491d03fe5cd19adbaa8fdc timeout=15000ms service=33ms state=completed
+source=rack-timeout id=829ea2943a4a1db8b46a5646fd469229 timeout=15000ms state=ready
+source=rack-timeout id=829ea2943a4a1db8b46a5646fd469229 timeout=15000ms service=1ms state=active
+source=rack-timeout id=5d1fd151d61f3928ce184facab7c6c61 timeout=15000ms service=102ms state=completed
+source=rack-timeout id=23e22a09dcc45da93b5988d8341a2ecb timeout=15000ms state=ready
+source=rack-timeout id=3097fde8522dfc3426437ef790d4d287 timeout=15000ms state=ready
+source=rack-timeout id=23e22a09dcc45da93b5988d8341a2ecb timeout=15000ms service=6ms state=active
+source=rack-timeout id=3097fde8522dfc3426437ef790d4d287 timeout=15000ms service=1ms state=active
+source=rack-timeout id=12920fc7ce0dd74404e961ef60a0bd0e timeout=15000ms state=ready
+source=rack-timeout id=17797877bb3da58749bd2e3ef38a4588 timeout=15000ms state=ready
+source=rack-timeout id=829ea2943a4a1db8b46a5646fd469229 timeout=15000ms service=68ms state=completed
+source=rack-timeout id=23e22a09dcc45da93b5988d8341a2ecb timeout=15000ms service=34ms state=completed
+source=rack-timeout id=3097fde8522dfc3426437ef790d4d287 timeout=15000ms service=38ms state=completed
+source=rack-timeout id=12920fc7ce0dd74404e961ef60a0bd0e timeout=15000ms service=36ms state=active
+source=rack-timeout id=17797877bb3da58749bd2e3ef38a4588 timeout=15000ms service=39ms state=active
+source=rack-timeout id=12920fc7ce0dd74404e961ef60a0bd0e timeout=15000ms service=56ms state=completed
+source=rack-timeout id=17797877bb3da58749bd2e3ef38a4588 timeout=15000ms service=72ms state=completed
+source=rack-timeout id=166c9e579a37a5127495181613bc72aa timeout=15000ms state=ready
+source=rack-timeout id=166c9e579a37a5127495181613bc72aa timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:25:49 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.4ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1yzorqo" -
+source=rack-timeout id=166c9e579a37a5127495181613bc72aa timeout=15000ms service=1005ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-7z7ww9" -
+source=rack-timeout id=166c9e579a37a5127495181613bc72aa timeout=15000ms service=2004ms state=active
+Completed 200 OK in 2208ms (Views: 2206.2ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=166c9e579a37a5127495181613bc72aa timeout=15000ms service=2230ms state=completed
+source=rack-timeout id=45bdb2f58ce008e5e43ba559bc85ef0d timeout=15000ms state=ready
+source=rack-timeout id=b1002a09552271aeea5df6122ecf3d34 timeout=15000ms state=ready
+source=rack-timeout id=59ce84693d77e495af79d57ab5e37ea8 timeout=15000ms state=ready
+source=rack-timeout id=094693715be9cf1df987e6808680b260 timeout=15000ms state=ready
+source=rack-timeout id=b14732c5115af9512084b155b631be17 timeout=15000ms state=ready
+source=rack-timeout id=45bdb2f58ce008e5e43ba559bc85ef0d timeout=15000ms service=19ms state=completed
+source=rack-timeout id=45bdb2f58ce008e5e43ba559bc85ef0d timeout=15000ms service=19ms state=completed
+source=rack-timeout id=59ce84693d77e495af79d57ab5e37ea8 timeout=15000ms service=35ms state=completed
+source=rack-timeout id=b1002a09552271aeea5df6122ecf3d34 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=b1002a09552271aeea5df6122ecf3d34 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=094693715be9cf1df987e6808680b260 timeout=15000ms service=69ms state=completed
+source=rack-timeout id=b14732c5115af9512084b155b631be17 timeout=15000ms service=70ms state=completed
+source=rack-timeout id=319522248e42dd59fc07e1c513c002e8 timeout=15000ms state=ready
+source=rack-timeout id=319522248e42dd59fc07e1c513c002e8 timeout=15000ms service=1ms state=active
+source=rack-timeout id=cb590e899abe9dc2dc7c5f9afa03c035 timeout=15000ms state=ready
+source=rack-timeout id=cb590e899abe9dc2dc7c5f9afa03c035 timeout=15000ms service=0ms state=active
+source=rack-timeout id=c69384cc1e7a167c21c05439bf8b07e2 timeout=15000ms state=ready
+source=rack-timeout id=319522248e42dd59fc07e1c513c002e8 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=83752af6e50277a337072f230fc5faff timeout=15000ms state=ready
+source=rack-timeout id=cb590e899abe9dc2dc7c5f9afa03c035 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=c69384cc1e7a167c21c05439bf8b07e2 timeout=15000ms service=15ms state=active
+source=rack-timeout id=83752af6e50277a337072f230fc5faff timeout=15000ms service=25ms state=active
+source=rack-timeout id=83752af6e50277a337072f230fc5faff timeout=15000ms service=26ms state=completed
+source=rack-timeout id=c69384cc1e7a167c21c05439bf8b07e2 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=d25335d08ba8c77a9cb1d98165b2b5fb timeout=15000ms state=ready
+source=rack-timeout id=85cce5ce29f1e2c9117db31b6a1d6ef8 timeout=15000ms state=ready
+source=rack-timeout id=d25335d08ba8c77a9cb1d98165b2b5fb timeout=15000ms service=5ms state=active
+source=rack-timeout id=625b58573cb8ebf7460508798d0d79d2 timeout=15000ms state=ready
+source=rack-timeout id=dec3f0e42b58dfc48fc0bc16689eefad timeout=15000ms state=ready
+source=rack-timeout id=85cce5ce29f1e2c9117db31b6a1d6ef8 timeout=15000ms service=23ms state=completed
+source=rack-timeout id=85cce5ce29f1e2c9117db31b6a1d6ef8 timeout=15000ms service=23ms state=completed
+source=rack-timeout id=d25335d08ba8c77a9cb1d98165b2b5fb timeout=15000ms service=26ms state=completed
+source=rack-timeout id=65a4892960dbcb434edad8ff756bfb7c timeout=15000ms state=ready
+source=rack-timeout id=625b58573cb8ebf7460508798d0d79d2 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=dec3f0e42b58dfc48fc0bc16689eefad timeout=15000ms service=22ms state=active
+source=rack-timeout id=65a4892960dbcb434edad8ff756bfb7c timeout=15000ms service=29ms state=active
+source=rack-timeout id=8b2ad58d182bc2c7e93bbdcbcef51ebb timeout=15000ms state=ready
+source=rack-timeout id=dec3f0e42b58dfc48fc0bc16689eefad timeout=15000ms service=50ms state=completed
+source=rack-timeout id=014d311ec22f75831a1926f58a6501c4 timeout=15000ms state=ready
+source=rack-timeout id=8b2ad58d182bc2c7e93bbdcbcef51ebb timeout=15000ms service=31ms state=completed
+source=rack-timeout id=014d311ec22f75831a1926f58a6501c4 timeout=15000ms service=32ms state=active
+source=rack-timeout id=65a4892960dbcb434edad8ff756bfb7c timeout=15000ms service=44ms state=completed
+source=rack-timeout id=a8bf902d4c15dc013577e1f9d6fb2348 timeout=15000ms state=ready
+source=rack-timeout id=8b2ad58d182bc2c7e93bbdcbcef51ebb timeout=15000ms service=31ms state=completed
+source=rack-timeout id=d6041dcebdbcdd7220cd2187c4b189ff timeout=15000ms state=ready
+source=rack-timeout id=a8bf902d4c15dc013577e1f9d6fb2348 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=d6041dcebdbcdd7220cd2187c4b189ff timeout=15000ms service=45ms state=active
+source=rack-timeout id=014d311ec22f75831a1926f58a6501c4 timeout=15000ms service=65ms state=completed
+source=rack-timeout id=a8bf902d4c15dc013577e1f9d6fb2348 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=3a11ace839bc1d0745de1790cf20323f timeout=15000ms state=ready
+source=rack-timeout id=743b031da1d59ea7a9c03d5bb1873e78 timeout=15000ms state=ready
+source=rack-timeout id=3a11ace839bc1d0745de1790cf20323f timeout=15000ms service=26ms state=active
+source=rack-timeout id=d6041dcebdbcdd7220cd2187c4b189ff timeout=15000ms service=62ms state=completed
+source=rack-timeout id=743b031da1d59ea7a9c03d5bb1873e78 timeout=15000ms service=22ms state=active
+source=rack-timeout id=bef552fc9c64e2e802004af5a7101f26 timeout=15000ms state=ready
+source=rack-timeout id=bef552fc9c64e2e802004af5a7101f26 timeout=15000ms service=8ms state=active
+source=rack-timeout id=743b031da1d59ea7a9c03d5bb1873e78 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=bef552fc9c64e2e802004af5a7101f26 timeout=15000ms service=35ms state=completed
+source=rack-timeout id=3a11ace839bc1d0745de1790cf20323f timeout=15000ms service=66ms state=completed
+source=rack-timeout id=0807b8bc2c50766906440c4edcf918af timeout=15000ms state=ready
+source=rack-timeout id=0807b8bc2c50766906440c4edcf918af timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:27:15 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (2.8ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1k5ab0g" -
+source=rack-timeout id=0807b8bc2c50766906440c4edcf918af timeout=15000ms service=1004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-u4bhm4" -
+source=rack-timeout id=0807b8bc2c50766906440c4edcf918af timeout=15000ms service=2004ms state=active
+Completed 200 OK in 2241ms (Views: 2239.1ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=0807b8bc2c50766906440c4edcf918af timeout=15000ms service=2257ms state=completed
+source=rack-timeout id=73e423b39fdd24bde01fc2974e561fe4 timeout=15000ms state=ready
+source=rack-timeout id=2f9e076f53a07f54cfdbbf98c0c00ad0 timeout=15000ms state=ready
+source=rack-timeout id=15ba938c9cac0b29ad7978ca184df4a8 timeout=15000ms state=ready
+source=rack-timeout id=a083fdb7dc5d381394fa264259fc31dc timeout=15000ms state=ready
+source=rack-timeout id=1a14fe95074006b4ae84b25419932f47 timeout=15000ms state=ready
+source=rack-timeout id=15ba938c9cac0b29ad7978ca184df4a8 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=73e423b39fdd24bde01fc2974e561fe4 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=1a14fe95074006b4ae84b25419932f47 timeout=15000ms service=50ms state=active
+source=rack-timeout id=73e423b39fdd24bde01fc2974e561fe4 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=2f9e076f53a07f54cfdbbf98c0c00ad0 timeout=15000ms service=36ms state=completed
+source=rack-timeout id=a083fdb7dc5d381394fa264259fc31dc timeout=15000ms service=47ms state=completed
+source=rack-timeout id=1a14fe95074006b4ae84b25419932f47 timeout=15000ms service=62ms state=completed
+source=rack-timeout id=23b8b84c10fee8b4d7a9dc3af5701fa3 timeout=15000ms state=ready
+source=rack-timeout id=23b8b84c10fee8b4d7a9dc3af5701fa3 timeout=15000ms service=8ms state=active
+source=rack-timeout id=eb56840b826660896d976f2ce2da0d73 timeout=15000ms state=ready
+source=rack-timeout id=23b8b84c10fee8b4d7a9dc3af5701fa3 timeout=15000ms service=23ms state=completed
+source=rack-timeout id=cde9866d104d314f8ae5f3626725aa52 timeout=15000ms state=ready
+source=rack-timeout id=eb56840b826660896d976f2ce2da0d73 timeout=15000ms service=14ms state=active
+source=rack-timeout id=9211896c1db74002e298fbeaf6986329 timeout=15000ms state=ready
+source=rack-timeout id=cde9866d104d314f8ae5f3626725aa52 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=9211896c1db74002e298fbeaf6986329 timeout=15000ms service=20ms state=active
+source=rack-timeout id=e7395998bdba2d43ef4295f9520558e2 timeout=15000ms state=ready
+source=rack-timeout id=cde9866d104d314f8ae5f3626725aa52 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=b228e52d1dc3bfaa579119baddaf363c timeout=15000ms state=ready
+source=rack-timeout id=9211896c1db74002e298fbeaf6986329 timeout=15000ms service=35ms state=completed
+source=rack-timeout id=eb56840b826660896d976f2ce2da0d73 timeout=15000ms service=66ms state=completed
+source=rack-timeout id=e7395998bdba2d43ef4295f9520558e2 timeout=15000ms service=45ms state=completed
+source=rack-timeout id=7f184d2531d408eab1f6e14d2fc89819 timeout=15000ms state=ready
+source=rack-timeout id=b228e52d1dc3bfaa579119baddaf363c timeout=15000ms service=61ms state=completed
+source=rack-timeout id=237cf93ab39687c25bab7a1c4967bcf2 timeout=15000ms state=ready
+source=rack-timeout id=e7395998bdba2d43ef4295f9520558e2 timeout=15000ms service=45ms state=completed
+source=rack-timeout id=f12a816d89dba2346d009422f826127c timeout=15000ms state=ready
+source=rack-timeout id=7f184d2531d408eab1f6e14d2fc89819 timeout=15000ms service=7ms state=active
+source=rack-timeout id=237cf93ab39687c25bab7a1c4967bcf2 timeout=15000ms service=28ms state=active
+source=rack-timeout id=f12a816d89dba2346d009422f826127c timeout=15000ms service=4ms state=active
+source=rack-timeout id=58b5e0b765de3edabb14c7503a0720ab timeout=15000ms state=ready
+source=rack-timeout id=58b5e0b765de3edabb14c7503a0720ab timeout=15000ms service=0ms state=active
+source=rack-timeout id=f12a816d89dba2346d009422f826127c timeout=15000ms service=21ms state=completed
+source=rack-timeout id=a26498f28f1beb998d4c6f09bec8f0f9 timeout=15000ms state=ready
+source=rack-timeout id=7f184d2531d408eab1f6e14d2fc89819 timeout=15000ms service=46ms state=completed
+source=rack-timeout id=237cf93ab39687c25bab7a1c4967bcf2 timeout=15000ms service=79ms state=completed
+source=rack-timeout id=a26498f28f1beb998d4c6f09bec8f0f9 timeout=15000ms service=48ms state=active
+source=rack-timeout id=58b5e0b765de3edabb14c7503a0720ab timeout=15000ms service=59ms state=completed
+source=rack-timeout id=21b548ad448486d031877ed71c1b1f6f timeout=15000ms state=ready
+source=rack-timeout id=a26498f28f1beb998d4c6f09bec8f0f9 timeout=15000ms service=62ms state=completed
+source=rack-timeout id=d9c5f916a8a26da37aba476b0882730d timeout=15000ms state=ready
+source=rack-timeout id=95672670b499e4b03f8b4bc21766f6ef timeout=15000ms state=ready
+source=rack-timeout id=0ba8e548857b0d384ddb3ecc633150ec timeout=15000ms state=ready
+source=rack-timeout id=21b548ad448486d031877ed71c1b1f6f timeout=15000ms service=44ms state=completed
+source=rack-timeout id=d9c5f916a8a26da37aba476b0882730d timeout=15000ms service=17ms state=completed
+source=rack-timeout id=21b548ad448486d031877ed71c1b1f6f timeout=15000ms service=44ms state=completed
+source=rack-timeout id=39ab18a2b469a20e45aad8486e85b42d timeout=15000ms state=ready
+source=rack-timeout id=95672670b499e4b03f8b4bc21766f6ef timeout=15000ms service=20ms state=active
+source=rack-timeout id=0ba8e548857b0d384ddb3ecc633150ec timeout=15000ms service=24ms state=active
+source=rack-timeout id=39ab18a2b469a20e45aad8486e85b42d timeout=15000ms service=1ms state=active
+source=rack-timeout id=95672670b499e4b03f8b4bc21766f6ef timeout=15000ms service=44ms state=completed
+source=rack-timeout id=0ba8e548857b0d384ddb3ecc633150ec timeout=15000ms service=47ms state=completed
+source=rack-timeout id=39ab18a2b469a20e45aad8486e85b42d timeout=15000ms service=42ms state=completed
+source=rack-timeout id=6af9551f3f6c80af1cf14afaf7668458 timeout=15000ms state=ready
+source=rack-timeout id=6af9551f3f6c80af1cf14afaf7668458 timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:27:31 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (2.8ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1vf3yfc" -
+source=rack-timeout id=6af9551f3f6c80af1cf14afaf7668458 timeout=15000ms service=1009ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1lhxl85" -
+source=rack-timeout id=6af9551f3f6c80af1cf14afaf7668458 timeout=15000ms service=2002ms state=active
+Completed 200 OK in 2221ms (Views: 2219.1ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=6af9551f3f6c80af1cf14afaf7668458 timeout=15000ms service=2242ms state=completed
+source=rack-timeout id=50caed3b521a7bbf5409300cfe234d8f timeout=15000ms state=ready
+source=rack-timeout id=50caed3b521a7bbf5409300cfe234d8f timeout=15000ms service=0ms state=active
+source=rack-timeout id=5719cf96a9d7cef9fc3659b31d3033a5 timeout=15000ms state=ready
+source=rack-timeout id=5d495074947d1def23979bea1c850071 timeout=15000ms state=ready
+source=rack-timeout id=5719cf96a9d7cef9fc3659b31d3033a5 timeout=15000ms service=1ms state=active
+source=rack-timeout id=5d495074947d1def23979bea1c850071 timeout=15000ms service=0ms state=active
+source=rack-timeout id=11725adeb36bb9147a678143b348ad71 timeout=15000ms state=ready
+source=rack-timeout id=11725adeb36bb9147a678143b348ad71 timeout=15000ms service=20ms state=active
+source=rack-timeout id=40576f7dc3a275c2b61da868e0523acc timeout=15000ms state=ready
+source=rack-timeout id=50caed3b521a7bbf5409300cfe234d8f timeout=15000ms service=37ms state=completed
+source=rack-timeout id=5d495074947d1def23979bea1c850071 timeout=15000ms service=35ms state=completed
+source=rack-timeout id=40576f7dc3a275c2b61da868e0523acc timeout=15000ms service=51ms state=completed
+source=rack-timeout id=40576f7dc3a275c2b61da868e0523acc timeout=15000ms service=51ms state=completed
+source=rack-timeout id=11725adeb36bb9147a678143b348ad71 timeout=15000ms service=73ms state=completed
+source=rack-timeout id=5719cf96a9d7cef9fc3659b31d3033a5 timeout=15000ms service=81ms state=completed
+source=rack-timeout id=eecab2841f23d95afbf22404413333bc timeout=15000ms state=ready
+source=rack-timeout id=eecab2841f23d95afbf22404413333bc timeout=15000ms service=4ms state=active
+source=rack-timeout id=f76b26b194e191727d81787aeb9ecd1a timeout=15000ms state=ready
+source=rack-timeout id=979c52ef84060e45d0399fdb39f1b539 timeout=15000ms state=ready
+source=rack-timeout id=eecab2841f23d95afbf22404413333bc timeout=15000ms service=34ms state=completed
+source=rack-timeout id=f1ccfe9266a9eb62bf1a3f523aeac7fd timeout=15000ms state=ready
+source=rack-timeout id=8f5e4bd5a7fe9ca87f3c696131cf2fac timeout=15000ms state=ready
+source=rack-timeout id=f76b26b194e191727d81787aeb9ecd1a timeout=15000ms service=41ms state=completed
+source=rack-timeout id=979c52ef84060e45d0399fdb39f1b539 timeout=15000ms service=42ms state=completed
+source=rack-timeout id=81a4ab570b4f1d7e64730a79d86de915 timeout=15000ms state=ready
+source=rack-timeout id=f76b26b194e191727d81787aeb9ecd1a timeout=15000ms service=41ms state=completed
+source=rack-timeout id=f1ccfe9266a9eb62bf1a3f523aeac7fd timeout=15000ms service=52ms state=completed
+source=rack-timeout id=8f5e4bd5a7fe9ca87f3c696131cf2fac timeout=15000ms service=59ms state=completed
+source=rack-timeout id=9e88b36a91f50f475e6896104c6191ab timeout=15000ms state=ready
+source=rack-timeout id=99cc4a534bd3b56ee0b5ab2d122e100a timeout=15000ms state=ready
+source=rack-timeout id=cbd6a0ec4d6c2900f043c027b9bd77d9 timeout=15000ms state=ready
+source=rack-timeout id=81a4ab570b4f1d7e64730a79d86de915 timeout=15000ms service=43ms state=active
+source=rack-timeout id=9e88b36a91f50f475e6896104c6191ab timeout=15000ms service=40ms state=completed
+source=rack-timeout id=81a4ab570b4f1d7e64730a79d86de915 timeout=15000ms service=63ms state=completed
+source=rack-timeout id=0e8910d7c7cd6667e2d42b09be2d81a0 timeout=15000ms state=ready
+source=rack-timeout id=99cc4a534bd3b56ee0b5ab2d122e100a timeout=15000ms service=61ms state=completed
+source=rack-timeout id=cbd6a0ec4d6c2900f043c027b9bd77d9 timeout=15000ms service=59ms state=completed
+source=rack-timeout id=0958adc487f68bdf62a5747170a6c82e timeout=15000ms state=ready
+source=rack-timeout id=0e8910d7c7cd6667e2d42b09be2d81a0 timeout=15000ms service=35ms state=active
+source=rack-timeout id=0958adc487f68bdf62a5747170a6c82e timeout=15000ms service=22ms state=active
+source=rack-timeout id=0e8910d7c7cd6667e2d42b09be2d81a0 timeout=15000ms service=57ms state=completed
+source=rack-timeout id=0958adc487f68bdf62a5747170a6c82e timeout=15000ms service=42ms state=completed
+source=rack-timeout id=c8c76ea75479520e1e12bb687f3e8532 timeout=15000ms state=ready
+source=rack-timeout id=c8c76ea75479520e1e12bb687f3e8532 timeout=15000ms service=4ms state=active
+source=rack-timeout id=c8c76ea75479520e1e12bb687f3e8532 timeout=15000ms service=20ms state=completed
+source=rack-timeout id=f9d31923b9dbe03b967f43175596a6ff timeout=15000ms state=ready
+source=rack-timeout id=f9d31923b9dbe03b967f43175596a6ff timeout=15000ms service=7ms state=active
+source=rack-timeout id=aa80b7f8797610218b06c76317fc0566 timeout=15000ms state=ready
+source=rack-timeout id=5f3902f72936e838c37976673d9c165a timeout=15000ms state=ready
+source=rack-timeout id=aa80b7f8797610218b06c76317fc0566 timeout=15000ms service=14ms state=active
+source=rack-timeout id=5f3902f72936e838c37976673d9c165a timeout=15000ms service=14ms state=active
+source=rack-timeout id=f9d31923b9dbe03b967f43175596a6ff timeout=15000ms service=19ms state=completed
+source=rack-timeout id=aa80b7f8797610218b06c76317fc0566 timeout=15000ms service=55ms state=completed
+source=rack-timeout id=a9966927d14ea7350d8aa5971fcc9ed2 timeout=15000ms state=ready
+source=rack-timeout id=5f3902f72936e838c37976673d9c165a timeout=15000ms service=57ms state=completed
+source=rack-timeout id=a9966927d14ea7350d8aa5971fcc9ed2 timeout=15000ms service=9ms state=active
+source=rack-timeout id=a9966927d14ea7350d8aa5971fcc9ed2 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=043382d28e8bc91505643cc698c1c09c timeout=15000ms state=ready
+source=rack-timeout id=043382d28e8bc91505643cc698c1c09c timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:27:44 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (4.5ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-r63kkw" -
+source=rack-timeout id=043382d28e8bc91505643cc698c1c09c timeout=15000ms service=1001ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1403mj9" -
+source=rack-timeout id=043382d28e8bc91505643cc698c1c09c timeout=15000ms service=2002ms state=active
+Completed 200 OK in 2245ms (Views: 2243.0ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=043382d28e8bc91505643cc698c1c09c timeout=15000ms service=2265ms state=completed
+source=rack-timeout id=268d5d01af0e1a6301648bf9ef2e5026 timeout=15000ms state=ready
+source=rack-timeout id=bfce17f8836e1d666924808c0807f4f2 timeout=15000ms state=ready
+source=rack-timeout id=268d5d01af0e1a6301648bf9ef2e5026 timeout=15000ms service=11ms state=active
+source=rack-timeout id=7a1265f26996df1131c7712f78e46fba timeout=15000ms state=ready
+source=rack-timeout id=e2cb18887401e3d6f1a68cca25b11d23 timeout=15000ms state=ready
+source=rack-timeout id=95a6daab64ff8575c4c720235f860cbc timeout=15000ms state=ready
+source=rack-timeout id=268d5d01af0e1a6301648bf9ef2e5026 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=bfce17f8836e1d666924808c0807f4f2 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=bfce17f8836e1d666924808c0807f4f2 timeout=15000ms service=32ms state=completed
+source=rack-timeout id=7a1265f26996df1131c7712f78e46fba timeout=15000ms service=40ms state=completed
+source=rack-timeout id=95a6daab64ff8575c4c720235f860cbc timeout=15000ms service=55ms state=completed
+source=rack-timeout id=e2cb18887401e3d6f1a68cca25b11d23 timeout=15000ms service=62ms state=completed
+source=rack-timeout id=864bd28f172da9076d5691c92e3f0c14 timeout=15000ms state=ready
+source=rack-timeout id=864bd28f172da9076d5691c92e3f0c14 timeout=15000ms service=0ms state=active
+source=rack-timeout id=864bd28f172da9076d5691c92e3f0c14 timeout=15000ms service=13ms state=completed
+source=rack-timeout id=295e9b553b1ed836793f0e5f336b8ae0 timeout=15000ms state=ready
+source=rack-timeout id=295e9b553b1ed836793f0e5f336b8ae0 timeout=15000ms service=5ms state=active
+source=rack-timeout id=9644c69263527993915e345e46ce00ef timeout=15000ms state=ready
+source=rack-timeout id=d64752803617afb888b8013c084056cc timeout=15000ms state=ready
+source=rack-timeout id=9644c69263527993915e345e46ce00ef timeout=15000ms service=1ms state=active
+source=rack-timeout id=295e9b553b1ed836793f0e5f336b8ae0 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=d64752803617afb888b8013c084056cc timeout=15000ms service=24ms state=completed
+source=rack-timeout id=d64752803617afb888b8013c084056cc timeout=15000ms service=24ms state=completed
+source=rack-timeout id=1351d183acde987bc07f525979b5b513 timeout=15000ms state=ready
+source=rack-timeout id=1351d183acde987bc07f525979b5b513 timeout=15000ms service=2ms state=active
+source=rack-timeout id=1351d183acde987bc07f525979b5b513 timeout=15000ms service=17ms state=completed
+source=rack-timeout id=9644c69263527993915e345e46ce00ef timeout=15000ms service=56ms state=completed
+source=rack-timeout id=eca2976133a5f18fdec8df948f304945 timeout=15000ms state=ready
+source=rack-timeout id=eca2976133a5f18fdec8df948f304945 timeout=15000ms service=0ms state=active
+source=rack-timeout id=a6b36aa3df971b058b6f7f860d5bf1b1 timeout=15000ms state=ready
+source=rack-timeout id=ac16ee77cd209ee37c9b4029d43006fc timeout=15000ms state=ready
+source=rack-timeout id=a6b36aa3df971b058b6f7f860d5bf1b1 timeout=15000ms service=3ms state=active
+source=rack-timeout id=ac16ee77cd209ee37c9b4029d43006fc timeout=15000ms service=20ms state=active
+source=rack-timeout id=8a7a643cde94936391124513c2f48259 timeout=15000ms state=ready
+source=rack-timeout id=8a7a643cde94936391124513c2f48259 timeout=15000ms service=21ms state=active
+source=rack-timeout id=bed7d2d2d0bc406596b198efe936b252 timeout=15000ms state=ready
+source=rack-timeout id=eca2976133a5f18fdec8df948f304945 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=bed7d2d2d0bc406596b198efe936b252 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=bed7d2d2d0bc406596b198efe936b252 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=ac16ee77cd209ee37c9b4029d43006fc timeout=15000ms service=68ms state=completed
+source=rack-timeout id=8a7a643cde94936391124513c2f48259 timeout=15000ms service=68ms state=completed
+source=rack-timeout id=a6b36aa3df971b058b6f7f860d5bf1b1 timeout=15000ms service=73ms state=completed
+source=rack-timeout id=62eae82e7355eed97620fb97e54df988 timeout=15000ms state=ready
+source=rack-timeout id=aa260b894a1249398e7beb78275a4875 timeout=15000ms state=ready
+source=rack-timeout id=33fd256209bdcee109ed44590ad41c13 timeout=15000ms state=ready
+source=rack-timeout id=62eae82e7355eed97620fb97e54df988 timeout=15000ms service=20ms state=active
+source=rack-timeout id=5a91eaaf45a6d1ad35390e85623604bb timeout=15000ms state=ready
+source=rack-timeout id=9ae1a2360167fba000b36c3ed7ba77ed timeout=15000ms state=ready
+source=rack-timeout id=62eae82e7355eed97620fb97e54df988 timeout=15000ms service=34ms state=completed
+source=rack-timeout id=aa260b894a1249398e7beb78275a4875 timeout=15000ms service=36ms state=completed
+source=rack-timeout id=aa260b894a1249398e7beb78275a4875 timeout=15000ms service=36ms state=completed
+source=rack-timeout id=33fd256209bdcee109ed44590ad41c13 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=5a91eaaf45a6d1ad35390e85623604bb timeout=15000ms service=62ms state=completed
+source=rack-timeout id=9ae1a2360167fba000b36c3ed7ba77ed timeout=15000ms service=53ms state=completed
+source=rack-timeout id=9ce3a3404e84d96a8d8af5f3f9dccb26 timeout=15000ms state=ready
+source=rack-timeout id=9ce3a3404e84d96a8d8af5f3f9dccb26 timeout=15000ms service=2ms state=active
+source=rack-timeout id=9ce3a3404e84d96a8d8af5f3f9dccb26 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=4f86e59d9963871f5f63aadd7c4e738b timeout=15000ms state=ready
+source=rack-timeout id=4f86e59d9963871f5f63aadd7c4e738b timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:28:09 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.0ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1xmeeix" -
+source=rack-timeout id=4f86e59d9963871f5f63aadd7c4e738b timeout=15000ms service=1004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1xwbqc7" -
+source=rack-timeout id=4f86e59d9963871f5f63aadd7c4e738b timeout=15000ms service=2001ms state=active
+Completed 200 OK in 2443ms (Views: 2440.4ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=4f86e59d9963871f5f63aadd7c4e738b timeout=15000ms service=2462ms state=completed
+source=rack-timeout id=001be0222764c1e86939cf49fc1ae726 timeout=15000ms state=ready
+source=rack-timeout id=de835d2150e5e79d966cbf5683b439ae timeout=15000ms state=ready
+source=rack-timeout id=a5afe1524059efa2dc81605a0def3700 timeout=15000ms state=ready
+source=rack-timeout id=001be0222764c1e86939cf49fc1ae726 timeout=15000ms service=11ms state=active
+source=rack-timeout id=de835d2150e5e79d966cbf5683b439ae timeout=15000ms service=9ms state=active
+source=rack-timeout id=a5afe1524059efa2dc81605a0def3700 timeout=15000ms service=1ms state=active
+source=rack-timeout id=37dbe2648eeceaa0e09b8bcec995a141 timeout=15000ms state=ready
+source=rack-timeout id=f142d833541729a0498f1986b7176f50 timeout=15000ms state=ready
+source=rack-timeout id=de835d2150e5e79d966cbf5683b439ae timeout=15000ms service=33ms state=completed
+source=rack-timeout id=a5afe1524059efa2dc81605a0def3700 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=001be0222764c1e86939cf49fc1ae726 timeout=15000ms service=52ms state=completed
+source=rack-timeout id=37dbe2648eeceaa0e09b8bcec995a141 timeout=15000ms service=57ms state=completed
+source=rack-timeout id=37dbe2648eeceaa0e09b8bcec995a141 timeout=15000ms service=57ms state=completed
+source=rack-timeout id=58aae518ce29bf3d6547627be5b24fe3 timeout=15000ms state=ready
+source=rack-timeout id=f142d833541729a0498f1986b7176f50 timeout=15000ms service=60ms state=completed
+source=rack-timeout id=58aae518ce29bf3d6547627be5b24fe3 timeout=15000ms service=9ms state=active
+source=rack-timeout id=6da47516d5fcaf684059e6758aa0f8aa timeout=15000ms state=ready
+source=rack-timeout id=6da47516d5fcaf684059e6758aa0f8aa timeout=15000ms service=1ms state=active
+source=rack-timeout id=58aae518ce29bf3d6547627be5b24fe3 timeout=15000ms service=38ms state=completed
+source=rack-timeout id=5b9975eb91af722f0c6ed5fdcfba9b95 timeout=15000ms state=ready
+source=rack-timeout id=5b9975eb91af722f0c6ed5fdcfba9b95 timeout=15000ms service=0ms state=active
+source=rack-timeout id=6da47516d5fcaf684059e6758aa0f8aa timeout=15000ms service=32ms state=completed
+source=rack-timeout id=5b9975eb91af722f0c6ed5fdcfba9b95 timeout=15000ms service=15ms state=completed
+source=rack-timeout id=99b6117863bdbd48e489c6a241e8f751 timeout=15000ms state=ready
+source=rack-timeout id=f6402217ed247b8500671f8913625648 timeout=15000ms state=ready
+source=rack-timeout id=dad60049f5eb050f0544b6dae1f9af12 timeout=15000ms state=ready
+source=rack-timeout id=99b6117863bdbd48e489c6a241e8f751 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=99b6117863bdbd48e489c6a241e8f751 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=3e8c1e0624e9fb0527d80129b739d01c timeout=15000ms state=ready
+source=rack-timeout id=f6402217ed247b8500671f8913625648 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=dad60049f5eb050f0544b6dae1f9af12 timeout=15000ms service=28ms state=active
+source=rack-timeout id=ca29523cad3f6c16901d16d74ebb8f7a timeout=15000ms state=ready
+source=rack-timeout id=3e8c1e0624e9fb0527d80129b739d01c timeout=15000ms service=16ms state=active
+source=rack-timeout id=b04ee151c1a0e6c9d832b07626e07cd5 timeout=15000ms state=ready
+source=rack-timeout id=ca29523cad3f6c16901d16d74ebb8f7a timeout=15000ms service=18ms state=active
+source=rack-timeout id=dad60049f5eb050f0544b6dae1f9af12 timeout=15000ms service=45ms state=completed
+source=rack-timeout id=b04ee151c1a0e6c9d832b07626e07cd5 timeout=15000ms service=14ms state=active
+source=rack-timeout id=308efcdb67df46f7aa23968596667326 timeout=15000ms state=ready
+source=rack-timeout id=3e8c1e0624e9fb0527d80129b739d01c timeout=15000ms service=24ms state=completed
+source=rack-timeout id=308efcdb67df46f7aa23968596667326 timeout=15000ms service=2ms state=active
+source=rack-timeout id=b04ee151c1a0e6c9d832b07626e07cd5 timeout=15000ms service=29ms state=completed
+source=rack-timeout id=308efcdb67df46f7aa23968596667326 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=ca29523cad3f6c16901d16d74ebb8f7a timeout=15000ms service=83ms state=completed
+source=rack-timeout id=2290891e98f44cf962f0b60e8b36b3fd timeout=15000ms state=ready
+source=rack-timeout id=261ed98242d11438e2fab1fa51e03af6 timeout=15000ms state=ready
+source=rack-timeout id=2290891e98f44cf962f0b60e8b36b3fd timeout=15000ms service=9ms state=active
+source=rack-timeout id=72afea7135c81c5020025d30d63ca3e0 timeout=15000ms state=ready
+source=rack-timeout id=261ed98242d11438e2fab1fa51e03af6 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=72afea7135c81c5020025d30d63ca3e0 timeout=15000ms service=32ms state=active
+source=rack-timeout id=261ed98242d11438e2fab1fa51e03af6 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=38aac593ee16d617b9f1bfbf61eb8e09 timeout=15000ms state=ready
+source=rack-timeout id=72afea7135c81c5020025d30d63ca3e0 timeout=15000ms service=53ms state=completed
+source=rack-timeout id=38aac593ee16d617b9f1bfbf61eb8e09 timeout=15000ms service=21ms state=active
+source=rack-timeout id=2290891e98f44cf962f0b60e8b36b3fd timeout=15000ms service=80ms state=completed
+source=rack-timeout id=38aac593ee16d617b9f1bfbf61eb8e09 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=215cb57a3a701d338aeb6129513a4e96 timeout=15000ms state=ready
+source=rack-timeout id=06cd4ea2c6fa8b81b195155258096b6a timeout=15000ms state=ready
+source=rack-timeout id=215cb57a3a701d338aeb6129513a4e96 timeout=15000ms service=6ms state=active
+source=rack-timeout id=06cd4ea2c6fa8b81b195155258096b6a timeout=15000ms service=2ms state=active
+source=rack-timeout id=215cb57a3a701d338aeb6129513a4e96 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=06cd4ea2c6fa8b81b195155258096b6a timeout=15000ms service=30ms state=completed
+source=rack-timeout id=88ec2e9953593d90223b1fc0bb5d317a timeout=15000ms state=ready
+source=rack-timeout id=88ec2e9953593d90223b1fc0bb5d317a timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:28:35 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.5ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-awhwzj" -
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-m7hxhf" -
+source=rack-timeout id=88ec2e9953593d90223b1fc0bb5d317a timeout=15000ms service=1003ms state=active
+source=rack-timeout id=88ec2e9953593d90223b1fc0bb5d317a timeout=15000ms service=2004ms state=active
+Completed 200 OK in 2197ms (Views: 2195.4ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=88ec2e9953593d90223b1fc0bb5d317a timeout=15000ms service=2219ms state=completed
+source=rack-timeout id=1b5c0fd44c71d79b550c2c7450329a0b timeout=15000ms state=ready
+source=rack-timeout id=6d4f981c6abcce431ece1d581d9e2dc5 timeout=15000ms state=ready
+source=rack-timeout id=1b5c0fd44c71d79b550c2c7450329a0b timeout=15000ms service=6ms state=active
+source=rack-timeout id=6d4f981c6abcce431ece1d581d9e2dc5 timeout=15000ms service=1ms state=active
+source=rack-timeout id=2ea521355cfd88c71b6878d2b09fec1d timeout=15000ms state=ready
+source=rack-timeout id=1b5c0fd44c71d79b550c2c7450329a0b timeout=15000ms service=25ms state=completed
+source=rack-timeout id=e7c6dd74dcf7040340682b2070907a5e timeout=15000ms state=ready
+source=rack-timeout id=a91a18e79701e1b165502427f3414c8c timeout=15000ms state=ready
+source=rack-timeout id=2ea521355cfd88c71b6878d2b09fec1d timeout=15000ms service=30ms state=active
+source=rack-timeout id=e7c6dd74dcf7040340682b2070907a5e timeout=15000ms service=22ms state=active
+source=rack-timeout id=a91a18e79701e1b165502427f3414c8c timeout=15000ms service=19ms state=active
+source=rack-timeout id=6d4f981c6abcce431ece1d581d9e2dc5 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=081fb5af22901996887d6eb9fdf867a1 timeout=15000ms state=ready
+source=rack-timeout id=081fb5af22901996887d6eb9fdf867a1 timeout=15000ms service=0ms state=active
+source=rack-timeout id=74776e1d6d34247b8d30945810cc0e71 timeout=15000ms state=ready
+source=rack-timeout id=a91a18e79701e1b165502427f3414c8c timeout=15000ms service=51ms state=completed
+source=rack-timeout id=74776e1d6d34247b8d30945810cc0e71 timeout=15000ms service=17ms state=active
+source=rack-timeout id=081fb5af22901996887d6eb9fdf867a1 timeout=15000ms service=55ms state=completed
+source=rack-timeout id=e7c6dd74dcf7040340682b2070907a5e timeout=15000ms service=81ms state=completed
+source=rack-timeout id=2ea521355cfd88c71b6878d2b09fec1d timeout=15000ms service=97ms state=completed
+source=rack-timeout id=74776e1d6d34247b8d30945810cc0e71 timeout=15000ms service=51ms state=completed
+source=rack-timeout id=68ff8aa64932af7d6e26bcbc5c0ac5ef timeout=15000ms state=ready
+source=rack-timeout id=46edaea6fec86834709eda66d67f1af2 timeout=15000ms state=ready
+source=rack-timeout id=8d570adfc74a4803a9144888302cc0c2 timeout=15000ms state=ready
+source=rack-timeout id=2cd88b0a972b0877361cf28a3e009687 timeout=15000ms state=ready
+source=rack-timeout id=68ff8aa64932af7d6e26bcbc5c0ac5ef timeout=15000ms service=36ms state=completed
+source=rack-timeout id=46edaea6fec86834709eda66d67f1af2 timeout=15000ms service=12ms state=completed
+source=rack-timeout id=68ff8aa64932af7d6e26bcbc5c0ac5ef timeout=15000ms service=36ms state=completed
+source=rack-timeout id=8d570adfc74a4803a9144888302cc0c2 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=8d570adfc74a4803a9144888302cc0c2 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=fc47e5e797cbab592dd6626afed3c4cf timeout=15000ms state=ready
+source=rack-timeout id=2cd88b0a972b0877361cf28a3e009687 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=fc47e5e797cbab592dd6626afed3c4cf timeout=15000ms service=13ms state=active
+source=rack-timeout id=a27435125167dd6b1841f4dce7a1660f timeout=15000ms state=ready
+source=rack-timeout id=ad033fe7d93bae557572303b674eceff timeout=15000ms state=ready
+source=rack-timeout id=a27435125167dd6b1841f4dce7a1660f timeout=15000ms service=6ms state=active
+source=rack-timeout id=ad033fe7d93bae557572303b674eceff timeout=15000ms service=3ms state=active
+source=rack-timeout id=560827a828416d664cd23b2e9c835615 timeout=15000ms state=ready
+source=rack-timeout id=b05ab94ffcc31c330db63d0d851a3f13 timeout=15000ms state=ready
+source=rack-timeout id=560827a828416d664cd23b2e9c835615 timeout=15000ms service=1ms state=active
+source=rack-timeout id=b05ab94ffcc31c330db63d0d851a3f13 timeout=15000ms service=0ms state=active
+source=rack-timeout id=a27435125167dd6b1841f4dce7a1660f timeout=15000ms service=44ms state=completed
+source=rack-timeout id=fc47e5e797cbab592dd6626afed3c4cf timeout=15000ms service=71ms state=completed
+source=rack-timeout id=b05ab94ffcc31c330db63d0d851a3f13 timeout=15000ms service=66ms state=completed
+source=rack-timeout id=ad033fe7d93bae557572303b674eceff timeout=15000ms service=72ms state=completed
+source=rack-timeout id=560827a828416d664cd23b2e9c835615 timeout=15000ms service=75ms state=completed
+source=rack-timeout id=adb00d6777dfe0dd80fb4d169583532d timeout=15000ms state=ready
+source=rack-timeout id=adb00d6777dfe0dd80fb4d169583532d timeout=15000ms service=9ms state=active
+source=rack-timeout id=525a6a93dcc943213652801e07bf7f67 timeout=15000ms state=ready
+source=rack-timeout id=a558000a2fe0b8217a9b41a5fb05250f timeout=15000ms state=ready
+source=rack-timeout id=525a6a93dcc943213652801e07bf7f67 timeout=15000ms service=2ms state=active
+source=rack-timeout id=adb00d6777dfe0dd80fb4d169583532d timeout=15000ms service=28ms state=completed
+source=rack-timeout id=a558000a2fe0b8217a9b41a5fb05250f timeout=15000ms service=25ms state=completed
+source=rack-timeout id=6c630ba0333dcc8657c513d46e0a6298 timeout=15000ms state=ready
+source=rack-timeout id=2d980e54efe83cdeaa86fa26be3f2c30 timeout=15000ms state=ready
+source=rack-timeout id=525a6a93dcc943213652801e07bf7f67 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=a558000a2fe0b8217a9b41a5fb05250f timeout=15000ms service=25ms state=completed
+source=rack-timeout id=6c630ba0333dcc8657c513d46e0a6298 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=6c630ba0333dcc8657c513d46e0a6298 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=2d980e54efe83cdeaa86fa26be3f2c30 timeout=15000ms service=56ms state=active
+source=rack-timeout id=2d980e54efe83cdeaa86fa26be3f2c30 timeout=15000ms service=67ms state=completed
+source=rack-timeout id=824f0536db71c9fd9cb5464ad78f7cec timeout=15000ms state=ready
+source=rack-timeout id=824f0536db71c9fd9cb5464ad78f7cec timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:29:43 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (5.5ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-vfn2j5" -
+source=rack-timeout id=824f0536db71c9fd9cb5464ad78f7cec timeout=15000ms service=1003ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-yvwdpj" -
+source=rack-timeout id=824f0536db71c9fd9cb5464ad78f7cec timeout=15000ms service=2003ms state=active
+Completed 200 OK in 2300ms (Views: 2297.1ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=824f0536db71c9fd9cb5464ad78f7cec timeout=15000ms service=2321ms state=completed
+source=rack-timeout id=19c6d8fac1630083ac91e1287b44aacc timeout=15000ms state=ready
+source=rack-timeout id=65f0ccb7376f890c6278bb3cbcd140b9 timeout=15000ms state=ready
+source=rack-timeout id=c4e5b154c87d044279cb5e5156e03456 timeout=15000ms state=ready
+source=rack-timeout id=6923d6c825a772b529996c0697b2a68d timeout=15000ms state=ready
+source=rack-timeout id=65f0ccb7376f890c6278bb3cbcd140b9 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=ec7c87746b1a602c877a38334d60024a timeout=15000ms state=ready
+source=rack-timeout id=19c6d8fac1630083ac91e1287b44aacc timeout=15000ms service=34ms state=completed
+source=rack-timeout id=19c6d8fac1630083ac91e1287b44aacc timeout=15000ms service=34ms state=completed
+source=rack-timeout id=c4e5b154c87d044279cb5e5156e03456 timeout=15000ms service=62ms state=completed
+source=rack-timeout id=c4e5b154c87d044279cb5e5156e03456 timeout=15000ms service=62ms state=completed
+source=rack-timeout id=36ca511b46afe1d2b55b55c2a132e4ac timeout=15000ms state=ready
+source=rack-timeout id=6923d6c825a772b529996c0697b2a68d timeout=15000ms service=65ms state=completed
+source=rack-timeout id=36ca511b46afe1d2b55b55c2a132e4ac timeout=15000ms service=25ms state=active
+source=rack-timeout id=ec7c87746b1a602c877a38334d60024a timeout=15000ms service=62ms state=completed
+source=rack-timeout id=e37c81e814da985718b3ad295b82b4b5 timeout=15000ms state=ready
+source=rack-timeout id=e37c81e814da985718b3ad295b82b4b5 timeout=15000ms service=0ms state=active
+source=rack-timeout id=0e2267a5fa366197092c9133e122ab36 timeout=15000ms state=ready
+source=rack-timeout id=da47730af9c9742f2781a252a8246dba timeout=15000ms state=ready
+source=rack-timeout id=2b583c2b247f8bc4d7f26196b7a6d295 timeout=15000ms state=ready
+source=rack-timeout id=e37c81e814da985718b3ad295b82b4b5 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=36ca511b46afe1d2b55b55c2a132e4ac timeout=15000ms service=76ms state=completed
+source=rack-timeout id=0e2267a5fa366197092c9133e122ab36 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=da47730af9c9742f2781a252a8246dba timeout=15000ms service=29ms state=completed
+source=rack-timeout id=2b583c2b247f8bc4d7f26196b7a6d295 timeout=15000ms service=38ms state=completed
+source=rack-timeout id=0e2267a5fa366197092c9133e122ab36 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=d669af242b78d71389a685ee7e4064ba timeout=15000ms state=ready
+source=rack-timeout id=5db2a172a35cea03d335a37078c70648 timeout=15000ms state=ready
+source=rack-timeout id=d669af242b78d71389a685ee7e4064ba timeout=15000ms service=11ms state=active
+source=rack-timeout id=5db2a172a35cea03d335a37078c70648 timeout=15000ms service=3ms state=active
+source=rack-timeout id=72cd9a194f4586cf8d3a2680416bfc21 timeout=15000ms state=ready
+source=rack-timeout id=4806cfc35e08efd7b30eabe7772f396d timeout=15000ms state=ready
+source=rack-timeout id=915eaed9e28291a97fa58a0a3a1ef5f3 timeout=15000ms state=ready
+source=rack-timeout id=72cd9a194f4586cf8d3a2680416bfc21 timeout=15000ms service=5ms state=active
+source=rack-timeout id=4806cfc35e08efd7b30eabe7772f396d timeout=15000ms service=5ms state=active
+source=rack-timeout id=915eaed9e28291a97fa58a0a3a1ef5f3 timeout=15000ms service=1ms state=active
+source=rack-timeout id=5db2a172a35cea03d335a37078c70648 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=d669af242b78d71389a685ee7e4064ba timeout=15000ms service=50ms state=completed
+source=rack-timeout id=915eaed9e28291a97fa58a0a3a1ef5f3 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=72cd9a194f4586cf8d3a2680416bfc21 timeout=15000ms service=71ms state=completed
+source=rack-timeout id=4806cfc35e08efd7b30eabe7772f396d timeout=15000ms service=73ms state=completed
+source=rack-timeout id=2949d2092f7f6d85e0864951e9cfef72 timeout=15000ms state=ready
+source=rack-timeout id=0793e3b5c14442387a9232b96d113541 timeout=15000ms state=ready
+source=rack-timeout id=2949d2092f7f6d85e0864951e9cfef72 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=2949d2092f7f6d85e0864951e9cfef72 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=d9020b447240fc49081c11692110f7ef timeout=15000ms state=ready
+source=rack-timeout id=656c6ae1d4bfa1d4593786034f6dd0ec timeout=15000ms state=ready
+source=rack-timeout id=0793e3b5c14442387a9232b96d113541 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=433215f84df0387dcd0251cb284cd5bd timeout=15000ms state=ready
+source=rack-timeout id=0793e3b5c14442387a9232b96d113541 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=8f4e50044e03db5a1bd98e828442efa1 timeout=15000ms state=ready
+source=rack-timeout id=656c6ae1d4bfa1d4593786034f6dd0ec timeout=15000ms service=44ms state=completed
+source=rack-timeout id=433215f84df0387dcd0251cb284cd5bd timeout=15000ms service=33ms state=completed
+source=rack-timeout id=d9020b447240fc49081c11692110f7ef timeout=15000ms service=51ms state=completed
+source=rack-timeout id=d9020b447240fc49081c11692110f7ef timeout=15000ms service=51ms state=completed
+source=rack-timeout id=8f4e50044e03db5a1bd98e828442efa1 timeout=15000ms service=25ms state=completed
+source=rack-timeout id=9ea22d725a79de4dfd9e1fe10208053c timeout=15000ms state=ready
+source=rack-timeout id=9ea22d725a79de4dfd9e1fe10208053c timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:34:58 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 242ms (ActiveRecord: 0.0ms)
+
+
+DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (called from initialize at /Users/lbass/.rvm/gems/ruby-2.3.1/gems/better_errors-2.1.1/lib/better_errors/raised_exception.rb:7)
+DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (called from initialize at /Users/lbass/.rvm/gems/ruby-2.3.1/gems/better_errors-2.1.1/lib/better_errors/raised_exception.rb:8)
+
+Sass::SyntaxError - Undefined variable: "$highlight-text".:
+  sass (3.4.22) lib/sass/script/tree/variable.rb:49:in `_perform'
+  sass (3.4.22) lib/sass/script/tree/node.rb:58:in `perform'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+  sass (3.4.22) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.4.22) lib/sass/stack.rb:115:in `with_frame'
+  sass (3.4.22) lib/sass/stack.rb:79:in `with_base'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+  sass (3.4.22) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.4.22) lib/sass/stack.rb:115:in `with_frame'
+  sass (3.4.22) lib/sass/stack.rb:79:in `with_base'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:328:in `block (2 levels) in visit_import'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:328:in `block in visit_import'
+  sass (3.4.22) lib/sass/stack.rb:88:in `block in with_import'
+  sass (3.4.22) lib/sass/stack.rb:115:in `with_frame'
+  sass (3.4.22) lib/sass/stack.rb:88:in `with_import'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:325:in `visit_import'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+  sass (3.4.22) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.4.22) lib/sass/stack.rb:115:in `with_frame'
+  sass (3.4.22) lib/sass/stack.rb:79:in `with_base'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:160:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:52:in `visit_children'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:36:in `block in visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+  sass (3.4.22) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:159:in `visit'
+  sass (3.4.22) lib/sass/tree/visitors/perform.rb:8:in `visit'
+  sass (3.4.22) lib/sass/tree/root_node.rb:36:in `css_tree'
+  sass (3.4.22) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.4.22) lib/sass/engine.rb:281:in `render'
+  sass-rails (5.0.6) lib/sass/rails/template.rb:47:in `evaluate'
+  tilt (2.0.5) lib/tilt/template.rb:102:in `render'
+  sprockets (3.7.0) lib/sprockets/legacy_tilt_processor.rb:25:in `call'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.0) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.0) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.0) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.0) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.0) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.0) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.0) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.0) lib/sprockets/utils.rb:196:in `dfs'
+  sprockets (3.7.0) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.0) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.0) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.0) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.0) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.0) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.0) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.0) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.0) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.0) lib/sprockets/base.rb:92:in `[]'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:355:in `find_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.0) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  app/views/layouts/application.html.slim:9:in `_app_views_layouts_application_html_slim___2235782158136297526_70282344764160'
+  actionview (5.0.0.1) lib/action_view/template.rb:158:in `block in render'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:348:in `instrument'
+  actionview (5.0.0.1) lib/action_view/template.rb:156:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (5.0.0.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (5.0.0.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:103:in `_render_template'
+  actionpack (5.0.0.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+  actionpack (5.0.0.1) lib/action_controller/metal/renderers.rb:144:in `render_to_body'
+  actionpack (5.0.0.1) lib/abstract_controller/rendering.rb:26:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:36:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (5.0.0.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/lbass/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (5.0.0.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (5.0.0.1) lib/action_controller/metal/implicit_render.rb:36:in `default_render'
+  actionpack (5.0.0.1) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.0.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.0.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.0.1) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.0.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.0.1) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.0.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.0.1) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  bullet (5.4.3) lib/bullet/rack.rb:12:in `call'
+  meta_request (0.4.0) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  meta_request (0.4.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  rack (2.0.1) lib/rack/deflater.rb:35:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (2.0.1) lib/rack/etag.rb:25:in `call'
+  rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+  rack (2.0.1) lib/rack/head.rb:12:in `call'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+  rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  rack-contrib (1.2.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.4.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+  railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  request_store (1.3.1) lib/request_store/middleware.rb:9:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+  rack-timeout (0.4.2) lib/rack/timeout/core.rb:122:in `block in call'
+  rack-timeout (0.4.2) lib/rack/timeout/support/timeout.rb:19:in `timeout'
+  rack-timeout (0.4.2) lib/rack/timeout/core.rb:121:in `call'
+  activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+  honeybadger (2.7.2) lib/honeybadger/rack/error_notifier.rb:33:in `block in call'
+  honeybadger (2.7.2) lib/honeybadger/config.rb:192:in `with_request'
+  honeybadger (2.7.2) lib/honeybadger/rack/error_notifier.rb:30:in `call'
+  honeybadger (2.7.2) lib/honeybadger/rack/user_feedback.rb:28:in `call'
+  honeybadger (2.7.2) lib/honeybadger/rack/user_informer.rb:18:in `call'
+  railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+  rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+  /Users/lbass/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/lbass/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/lbass/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+source=rack-timeout id=9ea22d725a79de4dfd9e1fe10208053c timeout=15000ms service=309ms state=completed
+source=rack-timeout id=e96afa469963b6fd8f1da59d789ec78d timeout=15000ms state=ready
+source=rack-timeout id=e96afa469963b6fd8f1da59d789ec78d timeout=15000ms service=0ms state=active
+Started POST "/__better_errors/65a41e753c27dba6/variables" for ::1 at 2017-02-07 11:34:59 -0600
+source=rack-timeout id=e96afa469963b6fd8f1da59d789ec78d timeout=15000ms service=70ms state=completed
+source=rack-timeout id=898de912237bd8107d3011454f5e7c32 timeout=15000ms state=ready
+source=rack-timeout id=898de912237bd8107d3011454f5e7c32 timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:35:08 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.5ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-1v9vm3c" -
+source=rack-timeout id=898de912237bd8107d3011454f5e7c32 timeout=15000ms service=1002ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-n33a3n" -
+source=rack-timeout id=898de912237bd8107d3011454f5e7c32 timeout=15000ms service=2000ms state=active
+Completed 200 OK in 2819ms (Views: 2817.6ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=898de912237bd8107d3011454f5e7c32 timeout=15000ms service=2838ms state=completed
+source=rack-timeout id=04f974d6bb0cf3f8b246cb53245b7bee timeout=15000ms state=ready
+source=rack-timeout id=489b3c13e04cf90c7ef2c395dc6f0255 timeout=15000ms state=ready
+source=rack-timeout id=30b32564ed18d0adadef1849c803cc25 timeout=15000ms state=ready
+source=rack-timeout id=04f974d6bb0cf3f8b246cb53245b7bee timeout=15000ms service=18ms state=active
+source=rack-timeout id=489b3c13e04cf90c7ef2c395dc6f0255 timeout=15000ms service=9ms state=active
+source=rack-timeout id=30b32564ed18d0adadef1849c803cc25 timeout=15000ms service=3ms state=active
+source=rack-timeout id=4264f117799d8fb20bcfee7e132b246f timeout=15000ms state=ready
+source=rack-timeout id=4264f117799d8fb20bcfee7e132b246f timeout=15000ms service=21ms state=active
+source=rack-timeout id=09a2ebf4d5f320623998617a4750b2c9 timeout=15000ms state=ready
+source=rack-timeout id=30b32564ed18d0adadef1849c803cc25 timeout=15000ms service=36ms state=completed
+source=rack-timeout id=489b3c13e04cf90c7ef2c395dc6f0255 timeout=15000ms service=58ms state=completed
+source=rack-timeout id=09a2ebf4d5f320623998617a4750b2c9 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=4264f117799d8fb20bcfee7e132b246f timeout=15000ms service=54ms state=completed
+source=rack-timeout id=3c4e8e8a37c73c6a28a7f7fd46026567 timeout=15000ms state=ready
+source=rack-timeout id=09a2ebf4d5f320623998617a4750b2c9 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=3c4e8e8a37c73c6a28a7f7fd46026567 timeout=15000ms service=1ms state=active
+source=rack-timeout id=04f974d6bb0cf3f8b246cb53245b7bee timeout=15000ms service=95ms state=completed
+source=rack-timeout id=3c4e8e8a37c73c6a28a7f7fd46026567 timeout=15000ms service=15ms state=completed
+source=rack-timeout id=a3c62bdf19a28685d44c76cb2e295091 timeout=15000ms state=ready
+source=rack-timeout id=a3c62bdf19a28685d44c76cb2e295091 timeout=15000ms service=2ms state=active
+source=rack-timeout id=07e382e391316be1967562ee72580c2a timeout=15000ms state=ready
+source=rack-timeout id=a3c62bdf19a28685d44c76cb2e295091 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=ca3c8b6987f76dc94fd3712d942c2cf2 timeout=15000ms state=ready
+source=rack-timeout id=07e382e391316be1967562ee72580c2a timeout=15000ms service=28ms state=active
+source=rack-timeout id=f8ddfecf2b120956f265b42760929aa5 timeout=15000ms state=ready
+source=rack-timeout id=6c3ea7267ca2d46763316adb61ad141e timeout=15000ms state=ready
+source=rack-timeout id=ca3c8b6987f76dc94fd3712d942c2cf2 timeout=15000ms service=30ms state=active
+source=rack-timeout id=f8ddfecf2b120956f265b42760929aa5 timeout=15000ms service=31ms state=active
+source=rack-timeout id=07e382e391316be1967562ee72580c2a timeout=15000ms service=54ms state=completed
+source=rack-timeout id=6c3ea7267ca2d46763316adb61ad141e timeout=15000ms service=3ms state=active
+source=rack-timeout id=6c3ea7267ca2d46763316adb61ad141e timeout=15000ms service=20ms state=completed
+source=rack-timeout id=f8ddfecf2b120956f265b42760929aa5 timeout=15000ms service=71ms state=completed
+source=rack-timeout id=ca3c8b6987f76dc94fd3712d942c2cf2 timeout=15000ms service=79ms state=completed
+source=rack-timeout id=f2d90e7da4c7a7e0e71e53328952e9cb timeout=15000ms state=ready
+source=rack-timeout id=f2d90e7da4c7a7e0e71e53328952e9cb timeout=15000ms service=9ms state=active
+source=rack-timeout id=683586c67634af8461937510004b8c1f timeout=15000ms state=ready
+source=rack-timeout id=683586c67634af8461937510004b8c1f timeout=15000ms service=5ms state=active
+source=rack-timeout id=f2d90e7da4c7a7e0e71e53328952e9cb timeout=15000ms service=32ms state=completed
+source=rack-timeout id=da71df4c168d71a6fcff12314a368692 timeout=15000ms state=ready
+source=rack-timeout id=979389bbcc44af663babb136f61d4f10 timeout=15000ms state=ready
+source=rack-timeout id=5bf356d8c3af51a77fe951789ef2ef12 timeout=15000ms state=ready
+source=rack-timeout id=da71df4c168d71a6fcff12314a368692 timeout=15000ms service=17ms state=completed
+source=rack-timeout id=683586c67634af8461937510004b8c1f timeout=15000ms service=62ms state=completed
+source=rack-timeout id=d45dab2273fab13f9703a66cf2d5cd6b timeout=15000ms state=ready
+source=rack-timeout id=979389bbcc44af663babb136f61d4f10 timeout=15000ms service=32ms state=active
+source=rack-timeout id=5bf356d8c3af51a77fe951789ef2ef12 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=da71df4c168d71a6fcff12314a368692 timeout=15000ms service=17ms state=completed
+source=rack-timeout id=979389bbcc44af663babb136f61d4f10 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=d45dab2273fab13f9703a66cf2d5cd6b timeout=15000ms service=46ms state=active
+source=rack-timeout id=6a4be33c9eab811ccf03fe667896bbab timeout=15000ms state=ready
+source=rack-timeout id=7ffe27298a4fa3e4dba595736cab974a timeout=15000ms state=ready
+source=rack-timeout id=9055c2ff7cf4d0dc0b17a5a8838a466c timeout=15000ms state=ready
+source=rack-timeout id=6a4be33c9eab811ccf03fe667896bbab timeout=15000ms service=25ms state=active
+source=rack-timeout id=d45dab2273fab13f9703a66cf2d5cd6b timeout=15000ms service=74ms state=completed
+source=rack-timeout id=7ffe27298a4fa3e4dba595736cab974a timeout=15000ms service=27ms state=active
+source=rack-timeout id=7ffe27298a4fa3e4dba595736cab974a timeout=15000ms service=40ms state=completed
+source=rack-timeout id=9055c2ff7cf4d0dc0b17a5a8838a466c timeout=15000ms service=47ms state=completed
+source=rack-timeout id=8fa63404b42cd49aeb247fb22affde16 timeout=15000ms state=ready
+source=rack-timeout id=8fa63404b42cd49aeb247fb22affde16 timeout=15000ms service=15ms state=active
+source=rack-timeout id=6a4be33c9eab811ccf03fe667896bbab timeout=15000ms service=65ms state=completed
+source=rack-timeout id=8fa63404b42cd49aeb247fb22affde16 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=db79eb30d9e817c68274399f6c005cb9 timeout=15000ms state=ready
+source=rack-timeout id=db79eb30d9e817c68274399f6c005cb9 timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:35:42 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.5ms)
+Completed 200 OK in 228ms (Views: 226.4ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=db79eb30d9e817c68274399f6c005cb9 timeout=15000ms service=251ms state=completed
+source=rack-timeout id=8b839c37b50181be8833bf66d9261f8a timeout=15000ms state=ready
+source=rack-timeout id=a36ab416e13fb16f4ce6f14a72f1c953 timeout=15000ms state=ready
+source=rack-timeout id=1b2ee6ee01c838194fabd848accd1382 timeout=15000ms state=ready
+source=rack-timeout id=00ee3861afec08085637ef320e304065 timeout=15000ms state=ready
+source=rack-timeout id=52fadc5616aa65221acd70094450c4bc timeout=15000ms state=ready
+source=rack-timeout id=8b839c37b50181be8833bf66d9261f8a timeout=15000ms service=39ms state=completed
+source=rack-timeout id=1b2ee6ee01c838194fabd848accd1382 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=8b839c37b50181be8833bf66d9261f8a timeout=15000ms service=39ms state=completed
+source=rack-timeout id=a36ab416e13fb16f4ce6f14a72f1c953 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=00ee3861afec08085637ef320e304065 timeout=15000ms service=41ms state=completed
+source=rack-timeout id=52fadc5616aa65221acd70094450c4bc timeout=15000ms service=56ms state=completed
+source=rack-timeout id=52fadc5616aa65221acd70094450c4bc timeout=15000ms service=56ms state=completed
+source=rack-timeout id=8a8fd6b9590c975bca21a1e122981ff6 timeout=15000ms state=ready
+source=rack-timeout id=4d756febe09bf58e669bddc774c960a2 timeout=15000ms state=ready
+source=rack-timeout id=8a8fd6b9590c975bca21a1e122981ff6 timeout=15000ms service=4ms state=active
+source=rack-timeout id=32ef2f9353a727a90fc60298158aa02d timeout=15000ms state=ready
+source=rack-timeout id=8a8fd6b9590c975bca21a1e122981ff6 timeout=15000ms service=16ms state=completed
+source=rack-timeout id=4d756febe09bf58e669bddc774c960a2 timeout=15000ms service=16ms state=active
+source=rack-timeout id=b1e4cb1352f16b9390c3d5a622640e8d timeout=15000ms state=ready
+source=rack-timeout id=32ef2f9353a727a90fc60298158aa02d timeout=15000ms service=26ms state=active
+source=rack-timeout id=4d756febe09bf58e669bddc774c960a2 timeout=15000ms service=40ms state=completed
+source=rack-timeout id=32ef2f9353a727a90fc60298158aa02d timeout=15000ms service=41ms state=completed
+source=rack-timeout id=b1e4cb1352f16b9390c3d5a622640e8d timeout=15000ms service=31ms state=active
+source=rack-timeout id=8c43e96c26994c30aa575a118644d4e5 timeout=15000ms state=ready
+source=rack-timeout id=b1e4cb1352f16b9390c3d5a622640e8d timeout=15000ms service=42ms state=completed
+source=rack-timeout id=5f47600a9165ee7f8eb4fe5632f4e791 timeout=15000ms state=ready
+source=rack-timeout id=8c43e96c26994c30aa575a118644d4e5 timeout=15000ms service=8ms state=active
+source=rack-timeout id=5f47600a9165ee7f8eb4fe5632f4e791 timeout=15000ms service=12ms state=active
+source=rack-timeout id=af2ec5e7f0271e116f78b5061b70c5d8 timeout=15000ms state=ready
+source=rack-timeout id=af2ec5e7f0271e116f78b5061b70c5d8 timeout=15000ms service=1ms state=active
+source=rack-timeout id=5f47600a9165ee7f8eb4fe5632f4e791 timeout=15000ms service=36ms state=completed
+source=rack-timeout id=af2ec5e7f0271e116f78b5061b70c5d8 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=65ee4c58443c40bb16fce2ebd8c0b6ff timeout=15000ms state=ready
+source=rack-timeout id=8c43e96c26994c30aa575a118644d4e5 timeout=15000ms service=42ms state=completed
+source=rack-timeout id=4582e00027dd0dbcd12bd71d4e6954d9 timeout=15000ms state=ready
+source=rack-timeout id=65ee4c58443c40bb16fce2ebd8c0b6ff timeout=15000ms service=8ms state=active
+source=rack-timeout id=6fc8f902f5635093033888117ec96833 timeout=15000ms state=ready
+source=rack-timeout id=4582e00027dd0dbcd12bd71d4e6954d9 timeout=15000ms service=12ms state=active
+source=rack-timeout id=65ee4c58443c40bb16fce2ebd8c0b6ff timeout=15000ms service=26ms state=completed
+source=rack-timeout id=4582e00027dd0dbcd12bd71d4e6954d9 timeout=15000ms service=22ms state=completed
+source=rack-timeout id=9e696288b1ef630fc70e43d4ce5fa83b timeout=15000ms state=ready
+source=rack-timeout id=d49002ef12a64711a7482e868a0bebb0 timeout=15000ms state=ready
+source=rack-timeout id=6fc8f902f5635093033888117ec96833 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=6fc8f902f5635093033888117ec96833 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=9e696288b1ef630fc70e43d4ce5fa83b timeout=15000ms service=19ms state=active
+source=rack-timeout id=d49002ef12a64711a7482e868a0bebb0 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=9e696288b1ef630fc70e43d4ce5fa83b timeout=15000ms service=46ms state=completed
+source=rack-timeout id=3f2ca8d8839c793067c56a003934273c timeout=15000ms state=ready
+source=rack-timeout id=3f2ca8d8839c793067c56a003934273c timeout=15000ms service=1ms state=active
+source=rack-timeout id=3f2ca8d8839c793067c56a003934273c timeout=15000ms service=41ms state=completed
+source=rack-timeout id=d08c94a82b3483f721420011ca06b673 timeout=15000ms state=ready
+source=rack-timeout id=d08c94a82b3483f721420011ca06b673 timeout=15000ms service=7ms state=active
+source=rack-timeout id=c90c92e742ecb8fba67c188b485233ff timeout=15000ms state=ready
+source=rack-timeout id=c90c92e742ecb8fba67c188b485233ff timeout=15000ms service=11ms state=active
+source=rack-timeout id=d08c94a82b3483f721420011ca06b673 timeout=15000ms service=33ms state=completed
+source=rack-timeout id=74cf1e0f8ac5bb66360bac335b63f04d timeout=15000ms state=ready
+source=rack-timeout id=74cf1e0f8ac5bb66360bac335b63f04d timeout=15000ms service=15ms state=active
+source=rack-timeout id=c90c92e742ecb8fba67c188b485233ff timeout=15000ms service=50ms state=completed
+source=rack-timeout id=74cf1e0f8ac5bb66360bac335b63f04d timeout=15000ms service=38ms state=completed
+source=rack-timeout id=b2c3978ff4f38b265bb71c4c56baae11 timeout=15000ms state=ready
+source=rack-timeout id=b2c3978ff4f38b265bb71c4c56baae11 timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:36:44 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.5ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-13kyglw" -
+source=rack-timeout id=b2c3978ff4f38b265bb71c4c56baae11 timeout=15000ms service=1004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-7i0h6u" -
+source=rack-timeout id=b2c3978ff4f38b265bb71c4c56baae11 timeout=15000ms service=2004ms state=active
+Completed 200 OK in 2233ms (Views: 2230.6ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=b2c3978ff4f38b265bb71c4c56baae11 timeout=15000ms service=2252ms state=completed
+source=rack-timeout id=5f254c03cb9843ecad9bf30b7416e61f timeout=15000ms state=ready
+source=rack-timeout id=5f254c03cb9843ecad9bf30b7416e61f timeout=15000ms service=0ms state=active
+source=rack-timeout id=8f37ff977cfb54d663d8fdbbc436ee93 timeout=15000ms state=ready
+source=rack-timeout id=0354f7d1ffd491e4c0aa6730a751b48d timeout=15000ms state=ready
+source=rack-timeout id=84fbbbd3057c8691018f5dd80bc3a114 timeout=15000ms state=ready
+source=rack-timeout id=6757a6499b9af9269ae9672b44a26240 timeout=15000ms state=ready
+source=rack-timeout id=8f37ff977cfb54d663d8fdbbc436ee93 timeout=15000ms service=8ms state=active
+source=rack-timeout id=8f37ff977cfb54d663d8fdbbc436ee93 timeout=15000ms service=17ms state=completed
+source=rack-timeout id=5f254c03cb9843ecad9bf30b7416e61f timeout=15000ms service=19ms state=completed
+source=rack-timeout id=0354f7d1ffd491e4c0aa6730a751b48d timeout=15000ms service=36ms state=completed
+source=rack-timeout id=84fbbbd3057c8691018f5dd80bc3a114 timeout=15000ms service=55ms state=completed
+source=rack-timeout id=6757a6499b9af9269ae9672b44a26240 timeout=15000ms service=55ms state=active
+source=rack-timeout id=8eb2a4c0e11e40615a0b58bda578880a timeout=15000ms state=ready
+source=rack-timeout id=8eb2a4c0e11e40615a0b58bda578880a timeout=15000ms service=2ms state=active
+source=rack-timeout id=8eb2a4c0e11e40615a0b58bda578880a timeout=15000ms service=35ms state=completed
+source=rack-timeout id=6757a6499b9af9269ae9672b44a26240 timeout=15000ms service=96ms state=completed
+source=rack-timeout id=e6c57674fd8fb6185583bd2704e3901a timeout=15000ms state=ready
+source=rack-timeout id=e6c57674fd8fb6185583bd2704e3901a timeout=15000ms service=1ms state=active
+source=rack-timeout id=eb42cb584428c48eb2273e50c66735e7 timeout=15000ms state=ready
+source=rack-timeout id=eb42cb584428c48eb2273e50c66735e7 timeout=15000ms service=1ms state=active
+source=rack-timeout id=e6c57674fd8fb6185583bd2704e3901a timeout=15000ms service=15ms state=completed
+source=rack-timeout id=073609684459ecded382c714af856e98 timeout=15000ms state=ready
+source=rack-timeout id=eb42cb584428c48eb2273e50c66735e7 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=073609684459ecded382c714af856e98 timeout=15000ms service=2ms state=active
+source=rack-timeout id=206c2d4f1a926fde61a1f9023ff87eff timeout=15000ms state=ready
+source=rack-timeout id=c8ee3ec18b00122108e54f4c6f3f4fd1 timeout=15000ms state=ready
+source=rack-timeout id=073609684459ecded382c714af856e98 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=206c2d4f1a926fde61a1f9023ff87eff timeout=15000ms service=20ms state=completed
+source=rack-timeout id=206c2d4f1a926fde61a1f9023ff87eff timeout=15000ms service=20ms state=completed
+source=rack-timeout id=8e963b3ff01da23f402edb3d14e3f29b timeout=15000ms state=ready
+source=rack-timeout id=848e36d8a48cd007f60df17a8fe2c068 timeout=15000ms state=ready
+source=rack-timeout id=c8ee3ec18b00122108e54f4c6f3f4fd1 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=c8ee3ec18b00122108e54f4c6f3f4fd1 timeout=15000ms service=27ms state=completed
+source=rack-timeout id=76fe73a3f3c4e1a51e17155ca3f01988 timeout=15000ms state=ready
+source=rack-timeout id=306d113e423fb9867583cf99a47d1d28 timeout=15000ms state=ready
+source=rack-timeout id=8e963b3ff01da23f402edb3d14e3f29b timeout=15000ms service=29ms state=active
+source=rack-timeout id=848e36d8a48cd007f60df17a8fe2c068 timeout=15000ms service=33ms state=active
+source=rack-timeout id=76fe73a3f3c4e1a51e17155ca3f01988 timeout=15000ms service=8ms state=active
+source=rack-timeout id=306d113e423fb9867583cf99a47d1d28 timeout=15000ms service=7ms state=active
+source=rack-timeout id=76fe73a3f3c4e1a51e17155ca3f01988 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=61baeb69e3354d691724061ebdb2e1be timeout=15000ms state=ready
+source=rack-timeout id=61baeb69e3354d691724061ebdb2e1be timeout=15000ms service=12ms state=active
+source=rack-timeout id=d8246bbcf44c810d820eac5972843130 timeout=15000ms state=ready
+source=rack-timeout id=848e36d8a48cd007f60df17a8fe2c068 timeout=15000ms service=108ms state=completed
+source=rack-timeout id=306d113e423fb9867583cf99a47d1d28 timeout=15000ms service=84ms state=completed
+source=rack-timeout id=d8246bbcf44c810d820eac5972843130 timeout=15000ms service=13ms state=active
+source=rack-timeout id=8e963b3ff01da23f402edb3d14e3f29b timeout=15000ms service=118ms state=completed
+source=rack-timeout id=61baeb69e3354d691724061ebdb2e1be timeout=15000ms service=42ms state=completed
+source=rack-timeout id=d8246bbcf44c810d820eac5972843130 timeout=15000ms service=42ms state=completed
+source=rack-timeout id=3c0e6e494a48f43417c1ec448bfcb6fc timeout=15000ms state=ready
+source=rack-timeout id=13a8ea1e16d1c71d01ec08947908b8d8 timeout=15000ms state=ready
+source=rack-timeout id=3c0e6e494a48f43417c1ec448bfcb6fc timeout=15000ms service=3ms state=active
+source=rack-timeout id=13a8ea1e16d1c71d01ec08947908b8d8 timeout=15000ms service=15ms state=active
+source=rack-timeout id=5a8da5fafc50d8dce06cbd98cef9249d timeout=15000ms state=ready
+source=rack-timeout id=5a8da5fafc50d8dce06cbd98cef9249d timeout=15000ms service=17ms state=active
+source=rack-timeout id=13a8ea1e16d1c71d01ec08947908b8d8 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=3c0e6e494a48f43417c1ec448bfcb6fc timeout=15000ms service=38ms state=completed
+source=rack-timeout id=452f160ee224ff0da7d9f52c6e0b4e25 timeout=15000ms state=ready
+source=rack-timeout id=5a8da5fafc50d8dce06cbd98cef9249d timeout=15000ms service=51ms state=completed
+source=rack-timeout id=452f160ee224ff0da7d9f52c6e0b4e25 timeout=15000ms service=8ms state=active
+source=rack-timeout id=452f160ee224ff0da7d9f52c6e0b4e25 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=6c351a6ecff90eb008e15a767626b6b3 timeout=15000ms state=ready
+source=rack-timeout id=6c351a6ecff90eb008e15a767626b6b3 timeout=15000ms service=0ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:37:00 -0600
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (3.1ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-8mflrt" -
+source=rack-timeout id=6c351a6ecff90eb008e15a767626b6b3 timeout=15000ms service=1013ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-7826-11u1ve4" -
+source=rack-timeout id=6c351a6ecff90eb008e15a767626b6b3 timeout=15000ms service=2005ms state=active
+Completed 200 OK in 2226ms (Views: 2224.5ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=6c351a6ecff90eb008e15a767626b6b3 timeout=15000ms service=2245ms state=completed
+source=rack-timeout id=b613d8e4a78903c2109fdcca15da4630 timeout=15000ms state=ready
+source=rack-timeout id=0ebdc5ea8ff47be85e2792a3e81866a7 timeout=15000ms state=ready
+source=rack-timeout id=b613d8e4a78903c2109fdcca15da4630 timeout=15000ms service=9ms state=active
+source=rack-timeout id=0ebdc5ea8ff47be85e2792a3e81866a7 timeout=15000ms service=9ms state=active
+source=rack-timeout id=c51a192d15f7966ffb5db3f4c826c6d4 timeout=15000ms state=ready
+source=rack-timeout id=73e610ecfb084571d2cc76e80a040160 timeout=15000ms state=ready
+source=rack-timeout id=648fadb723a729c8bfc78f439aca724e timeout=15000ms state=ready
+source=rack-timeout id=c51a192d15f7966ffb5db3f4c826c6d4 timeout=15000ms service=6ms state=active
+source=rack-timeout id=0ebdc5ea8ff47be85e2792a3e81866a7 timeout=15000ms service=34ms state=completed
+source=rack-timeout id=73e610ecfb084571d2cc76e80a040160 timeout=15000ms service=59ms state=completed
+source=rack-timeout id=c51a192d15f7966ffb5db3f4c826c6d4 timeout=15000ms service=68ms state=completed
+source=rack-timeout id=648fadb723a729c8bfc78f439aca724e timeout=15000ms service=64ms state=completed
+source=rack-timeout id=648fadb723a729c8bfc78f439aca724e timeout=15000ms service=64ms state=completed
+source=rack-timeout id=b613d8e4a78903c2109fdcca15da4630 timeout=15000ms service=82ms state=completed
+source=rack-timeout id=36b3c88610e44e5c83209b62e0c2c801 timeout=15000ms state=ready
+source=rack-timeout id=36b3c88610e44e5c83209b62e0c2c801 timeout=15000ms service=3ms state=active
+source=rack-timeout id=36b3c88610e44e5c83209b62e0c2c801 timeout=15000ms service=15ms state=completed
+source=rack-timeout id=e1cadcbdf5570cf59981e451823dd4e0 timeout=15000ms state=ready
+source=rack-timeout id=e1cadcbdf5570cf59981e451823dd4e0 timeout=15000ms service=2ms state=active
+source=rack-timeout id=9049b059c7f9bddcc7bcdfddd580af94 timeout=15000ms state=ready
+source=rack-timeout id=e1cadcbdf5570cf59981e451823dd4e0 timeout=15000ms service=24ms state=completed
+source=rack-timeout id=ca0d0c84de21b36e0d354ed47889e45d timeout=15000ms state=ready
+source=rack-timeout id=9049b059c7f9bddcc7bcdfddd580af94 timeout=15000ms service=7ms state=active
+source=rack-timeout id=84627f10f5c525673aad2110e6b4f4f5 timeout=15000ms state=ready
+source=rack-timeout id=ca0d0c84de21b36e0d354ed47889e45d timeout=15000ms service=21ms state=completed
+source=rack-timeout id=ca0d0c84de21b36e0d354ed47889e45d timeout=15000ms service=21ms state=completed
+source=rack-timeout id=9049b059c7f9bddcc7bcdfddd580af94 timeout=15000ms service=30ms state=completed
+source=rack-timeout id=84627f10f5c525673aad2110e6b4f4f5 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=84627f10f5c525673aad2110e6b4f4f5 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=12dafe05be72ae9dd839cfb928cb58e4 timeout=15000ms state=ready
+source=rack-timeout id=011fb94eb153227b87fd58d11f9bf5c1 timeout=15000ms state=ready
+source=rack-timeout id=2b3771a03f0b6eca216472e033517900 timeout=15000ms state=ready
+source=rack-timeout id=12dafe05be72ae9dd839cfb928cb58e4 timeout=15000ms service=6ms state=active
+source=rack-timeout id=011fb94eb153227b87fd58d11f9bf5c1 timeout=15000ms service=7ms state=active
+source=rack-timeout id=2b3771a03f0b6eca216472e033517900 timeout=15000ms service=5ms state=active
+source=rack-timeout id=2b3771a03f0b6eca216472e033517900 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=12dafe05be72ae9dd839cfb928cb58e4 timeout=15000ms service=68ms state=completed
+source=rack-timeout id=19d159fce25bbcb399aacdc7fa1ea402 timeout=15000ms state=ready
+source=rack-timeout id=19d159fce25bbcb399aacdc7fa1ea402 timeout=15000ms service=0ms state=active
+source=rack-timeout id=4352199c59eaf57dde18d65155969f77 timeout=15000ms state=ready
+source=rack-timeout id=f91393f1b02b793e36da793495a1d340 timeout=15000ms state=ready
+source=rack-timeout id=19d159fce25bbcb399aacdc7fa1ea402 timeout=15000ms service=16ms state=completed
+source=rack-timeout id=4352199c59eaf57dde18d65155969f77 timeout=15000ms service=13ms state=active
+source=rack-timeout id=80379ac9289130302061943e5f9c9d89 timeout=15000ms state=ready
+source=rack-timeout id=f91393f1b02b793e36da793495a1d340 timeout=15000ms service=8ms state=active
+source=rack-timeout id=80379ac9289130302061943e5f9c9d89 timeout=15000ms service=8ms state=active
+source=rack-timeout id=4352199c59eaf57dde18d65155969f77 timeout=15000ms service=28ms state=completed
+source=rack-timeout id=011fb94eb153227b87fd58d11f9bf5c1 timeout=15000ms service=125ms state=completed
+source=rack-timeout id=6c84837599b45cacde18c4eb041477b6 timeout=15000ms state=ready
+source=rack-timeout id=80379ac9289130302061943e5f9c9d89 timeout=15000ms service=43ms state=completed
+source=rack-timeout id=f91393f1b02b793e36da793495a1d340 timeout=15000ms service=46ms state=completed
+source=rack-timeout id=6c84837599b45cacde18c4eb041477b6 timeout=15000ms service=12ms state=active
+source=rack-timeout id=07a875571bfc190c68099b392fae736e timeout=15000ms state=ready
+source=rack-timeout id=ca351ef3c1246576e973c1c271d783cf timeout=15000ms state=ready
+source=rack-timeout id=07a875571bfc190c68099b392fae736e timeout=15000ms service=19ms state=active
+source=rack-timeout id=b2b6d85ee55b6917ef6d94111353b161 timeout=15000ms state=ready
+source=rack-timeout id=ca351ef3c1246576e973c1c271d783cf timeout=15000ms service=20ms state=active
+source=rack-timeout id=07a875571bfc190c68099b392fae736e timeout=15000ms service=35ms state=completed
+source=rack-timeout id=6c84837599b45cacde18c4eb041477b6 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=b2b6d85ee55b6917ef6d94111353b161 timeout=15000ms service=14ms state=active
+source=rack-timeout id=b2b6d85ee55b6917ef6d94111353b161 timeout=15000ms service=37ms state=completed
+source=rack-timeout id=ca351ef3c1246576e973c1c271d783cf timeout=15000ms service=48ms state=completed
+** [Honeybadger] Starting Honeybadger version 2.7.2 level=1 pid=14202
+** [Honeybadger] Initializing development backend: data will not be reported. level=2 pid=14202
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from block (2 levels) in <top (required)> at /Users/lbass/Sites/dataminr/config/environments/development.rb:61)
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms state=ready
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-07 11:55:24 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (12.0ms)
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-14202-86obmi" -
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=1005ms state=active
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=2005ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-14202-1t6ufnm" -
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=3005ms state=active
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=4004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-14202-i2fmnk" -
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=5004ms state=active
+Browserify: /Users/lbass/Sites/dataminr/node_modules/.bin/browserifyinc -t babelify --cachefile=/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/Users/lbass/Sites/dataminr/tmp/cache/browserify-rails/output20170207-14202-yvbice" -
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=6005ms state=active
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=7008ms state=active
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=8085ms state=active
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=9039ms state=active
+Completed 200 OK in 9372ms (Views: 9358.1ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=1b29c90abadd1e1b22a297cdaa109211 timeout=15000ms service=9479ms state=completed
+source=rack-timeout id=f4fef1f64edce086b5c7ce93e363cb19 timeout=15000ms state=ready
+source=rack-timeout id=f4fef1f64edce086b5c7ce93e363cb19 timeout=15000ms service=13ms state=active
+source=rack-timeout id=f4fef1f64edce086b5c7ce93e363cb19 timeout=15000ms service=50ms state=completed
+source=rack-timeout id=47ad468bb729e86d71c97a7598428ba4 timeout=15000ms state=ready
+source=rack-timeout id=47ad468bb729e86d71c97a7598428ba4 timeout=15000ms service=4ms state=active
+source=rack-timeout id=a10ca1ea5165f51beff2b31abda70b92 timeout=15000ms state=ready
+source=rack-timeout id=a10ca1ea5165f51beff2b31abda70b92 timeout=15000ms service=1ms state=active
+source=rack-timeout id=47ad468bb729e86d71c97a7598428ba4 timeout=15000ms service=20ms state=completed
+source=rack-timeout id=a10ca1ea5165f51beff2b31abda70b92 timeout=15000ms service=18ms state=completed
+source=rack-timeout id=b17c89f1420df05228c73e2fbcfac2b9 timeout=15000ms state=ready
+source=rack-timeout id=f8355c47188214713c69dafe733065b0 timeout=15000ms state=ready
+source=rack-timeout id=b17c89f1420df05228c73e2fbcfac2b9 timeout=15000ms service=2ms state=active
+source=rack-timeout id=cad24a75a43efe0ecae4bfee0900789a timeout=15000ms state=ready
+source=rack-timeout id=f8355c47188214713c69dafe733065b0 timeout=15000ms service=19ms state=active
+source=rack-timeout id=b17c89f1420df05228c73e2fbcfac2b9 timeout=15000ms service=21ms state=completed
+source=rack-timeout id=cad24a75a43efe0ecae4bfee0900789a timeout=15000ms service=5ms state=active
+source=rack-timeout id=cad24a75a43efe0ecae4bfee0900789a timeout=15000ms service=31ms state=completed
+source=rack-timeout id=f8355c47188214713c69dafe733065b0 timeout=15000ms service=59ms state=completed
+source=rack-timeout id=40a3da514f1a6e55dcc32829269fbe89 timeout=15000ms state=ready
+source=rack-timeout id=d9199fb20a9e72bdb4f4e4b2209b80ed timeout=15000ms state=ready
+source=rack-timeout id=40a3da514f1a6e55dcc32829269fbe89 timeout=15000ms service=20ms state=completed
+source=rack-timeout id=40a3da514f1a6e55dcc32829269fbe89 timeout=15000ms service=20ms state=completed
+source=rack-timeout id=93295c023de0298a99da32fdfc503051 timeout=15000ms state=ready
+source=rack-timeout id=d9199fb20a9e72bdb4f4e4b2209b80ed timeout=15000ms service=31ms state=completed
+source=rack-timeout id=ef65824b82d018e25e03892c2a46af64 timeout=15000ms state=ready
+source=rack-timeout id=8f2e63d579ed919bed2db762e1d76263 timeout=15000ms state=ready
+source=rack-timeout id=d9199fb20a9e72bdb4f4e4b2209b80ed timeout=15000ms service=31ms state=completed
+source=rack-timeout id=8cac1efa069fff26cadad69dda725888 timeout=15000ms state=ready
+source=rack-timeout id=93295c023de0298a99da32fdfc503051 timeout=15000ms service=16ms state=completed
+source=rack-timeout id=ef65824b82d018e25e03892c2a46af64 timeout=15000ms service=22ms state=completed
+source=rack-timeout id=93295c023de0298a99da32fdfc503051 timeout=15000ms service=16ms state=completed
+source=rack-timeout id=8f2e63d579ed919bed2db762e1d76263 timeout=15000ms service=60ms state=active
+source=rack-timeout id=a489b221b151975e3ed4e26d200ced01 timeout=15000ms state=ready
+source=rack-timeout id=8cac1efa069fff26cadad69dda725888 timeout=15000ms service=39ms state=completed
+source=rack-timeout id=a489b221b151975e3ed4e26d200ced01 timeout=15000ms service=35ms state=active
+source=rack-timeout id=52a280ddadecb037f67ce22ad188b054 timeout=15000ms state=ready
+source=rack-timeout id=1b3a61ec4ae038db5b444aa0cf1ef407 timeout=15000ms state=ready
+source=rack-timeout id=52a280ddadecb037f67ce22ad188b054 timeout=15000ms service=11ms state=active
+source=rack-timeout id=1b3a61ec4ae038db5b444aa0cf1ef407 timeout=15000ms service=11ms state=active
+source=rack-timeout id=a489b221b151975e3ed4e26d200ced01 timeout=15000ms service=57ms state=completed
+source=rack-timeout id=b3c1f86edc6da8a4bfc7f291ad149e14 timeout=15000ms state=ready
+source=rack-timeout id=52a280ddadecb037f67ce22ad188b054 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=1b3a61ec4ae038db5b444aa0cf1ef407 timeout=15000ms service=26ms state=completed
+source=rack-timeout id=b3c1f86edc6da8a4bfc7f291ad149e14 timeout=15000ms service=22ms state=active
+source=rack-timeout id=8f2e63d579ed919bed2db762e1d76263 timeout=15000ms service=109ms state=completed
+source=rack-timeout id=b3c1f86edc6da8a4bfc7f291ad149e14 timeout=15000ms service=48ms state=completed
+source=rack-timeout id=73ddaa560a97b082a96094a697ba9312 timeout=15000ms state=ready
+source=rack-timeout id=92aba7d18703b1c131f1fb6d56fc37b1 timeout=15000ms state=ready
+source=rack-timeout id=73ddaa560a97b082a96094a697ba9312 timeout=15000ms service=6ms state=active
+source=rack-timeout id=92aba7d18703b1c131f1fb6d56fc37b1 timeout=15000ms service=6ms state=active
+source=rack-timeout id=93ade1bbcd3c3539ffa93d7f30f026c2 timeout=15000ms state=ready
+source=rack-timeout id=62b9b1d7a7f1840cdbf5568d8cff7bbd timeout=15000ms state=ready
+source=rack-timeout id=93ade1bbcd3c3539ffa93d7f30f026c2 timeout=15000ms service=7ms state=active
+source=rack-timeout id=62b9b1d7a7f1840cdbf5568d8cff7bbd timeout=15000ms service=3ms state=active
+source=rack-timeout id=611361cf725f78a4d37552770d335c7d timeout=15000ms state=ready
+source=rack-timeout id=611361cf725f78a4d37552770d335c7d timeout=15000ms service=0ms state=active
+source=rack-timeout id=73ddaa560a97b082a96094a697ba9312 timeout=15000ms service=31ms state=completed
+source=rack-timeout id=611361cf725f78a4d37552770d335c7d timeout=15000ms service=22ms state=completed
+source=rack-timeout id=93ade1bbcd3c3539ffa93d7f30f026c2 timeout=15000ms service=38ms state=completed
+source=rack-timeout id=62b9b1d7a7f1840cdbf5568d8cff7bbd timeout=15000ms service=46ms state=completed
+source=rack-timeout id=92aba7d18703b1c131f1fb6d56fc37b1 timeout=15000ms service=63ms state=completed

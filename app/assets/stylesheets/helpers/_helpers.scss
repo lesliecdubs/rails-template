@@ -1,0 +1,41 @@
+//  =================================================================================================
+//
+//  Helper Classes
+//
+//  =================================================================================================
+
+//  ==========================================================================
+//  Mods
+//  ==========================================================================
+%clearfix { @include clearfix(); }
+
+//  ==========================================================================
+//  Modal Open Styles
+//  ==========================================================================
+.is-modal-open {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+//  ==========================================================================
+//  Visibility Controllers
+//  ==========================================================================
+.is-visually-hidden {
+  border: 0 !important;
+  clip: rect(1px 1px 1px 1px) !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  left: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  width: 1px !important;
+}
+
+.is-transparent { opacity: 0; }
+
+.is-hidden { display: none !important; }

@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width = device-width, initial-scale = 1, user-scalable = no"
+    title PROJECT CMS
+    = stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'admin/application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body class="admin #{controller_name} #{action_name}" data-js-router="#{controller_name}_#{action_name}"
+    = render 'layouts/admin/nav'
+    .container-fluid.application
+      = render 'layouts/admin/notices'
+      == breadcrumbs style: :bootstrap
+      .container-fluid
+        = yield

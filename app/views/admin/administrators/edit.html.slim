@@ -1,0 +1,22 @@
+- breadcrumb :edit_administrator, @administrator
+
+- content_for :errors do |e|
+  = list_errors(@administrator.errors.full_messages)
+
+.col-md-12
+  .panel.panel-default
+    .panel-heading
+      h4.panel-title Edit Administrator: #{@administrator.full_name}
+    .panel-body
+      = simple_form_for [:admin, @administrator] do |f|
+        .form-inputs
+          = f.input :first_name, required: true, autofocus: true, input_html: { class: 'form-control' }
+          = f.input :last_name, required: true, input_html: { class: 'form-control' }
+          = f.input :email, required: true, input_html: { class: 'form-control' }
+          = f.input :password, autocomplete: 'off', hint: "Leave blank if you don't want to change your current password", required: false, input_html: { class: 'form-control' }
+          = f.input :password_confirmation, required: false, input_html: { class: 'form-control' }
+          = f.input :current_password, hint: "This admin's current password is required to confirm your changes", required: true, input_html: { class: 'form-control' }
+
+        .form-actions
+          = f.submit class: 'btn btn-primary'
+

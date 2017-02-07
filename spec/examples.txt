@@ -1,0 +1,24 @@
+example_id                                                          | status | run_time        |
+------------------------------------------------------------------- | ------ | --------------- |
+./spec/controllers/admin/administrators_controller_spec.rb[1:1:1]   | passed | 0.01153 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:1:2]   | passed | 0.00999 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:1:3]   | passed | 0.03159 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:2:1]   | passed | 0.01119 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:2:2]   | passed | 0.01055 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:3:1]   | passed | 0.01591 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:3:2]   | passed | 0.01632 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:3:3]   | passed | 0.02756 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:4:1:1] | passed | 0.0248 seconds  |
+./spec/controllers/admin/administrators_controller_spec.rb[1:4:1:2] | passed | 0.31041 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:4:2:1] | passed | 0.0242 seconds  |
+./spec/controllers/admin/administrators_controller_spec.rb[1:4:2:2] | passed | 0.01548 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:5:1:1] | passed | 0.02785 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:5:1:2] | passed | 0.03318 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:5:2:1] | passed | 0.02451 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:5:2:2] | passed | 0.0255 seconds  |
+./spec/controllers/admin/administrators_controller_spec.rb[1:6:1:1] | passed | 0.01928 seconds |
+./spec/controllers/admin/administrators_controller_spec.rb[1:6:1:2] | passed | 0.0292 seconds  |
+./spec/controllers/admin/administrators_controller_spec.rb[1:6:2:1] | passed | 0.0137 seconds  |
+./spec/controllers/admin/administrators_controller_spec.rb[1:6:2:2] | passed | 0.0145 seconds  |
+./spec/models/administrator_spec.rb[1:1:1]                          | passed | 0.00422 seconds |
+./spec/models/administrator_spec.rb[1:1:2]                          | passed | 0.00395 seconds |
