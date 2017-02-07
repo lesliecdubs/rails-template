@@ -16,9 +16,8 @@
 //= require jquery_nested_form
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require images-loaded
-
 //= require_self
+require('babel-polyfill');
 
 document.addEventListener('turbolinks:load', () => {
   window.Dataminr = window.Dataminr || require('./main').default();

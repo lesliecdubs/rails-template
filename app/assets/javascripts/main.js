@@ -3,7 +3,6 @@
 //  Set Up JS App & Router
 //
 //  ==========================================================================
-import 'babel-polyfill';
 import * as controllers from './controllers/controllers';
 
 const Dataminr = () => {
@@ -20,27 +19,27 @@ const Dataminr = () => {
     currentController: null,
     // isMobileDevice is a boolean for determining if user is on a mobile device
     isMobileDevice: checkMobileDevice(),
-    // currentBreakpoint is a string value representing the current breakpoint that
-    // is synced with the CSS breakpoints
-    currentBreakpoint: checkBreakpoint()
+    isMobile: false,
+    currentBreakpoint: ''
   };
 
+  checkBreakpoint();
+  checkMobileBp();
+
   function checkBreakpoint() {
-    return window.getComputedStyle(document.body, ':before').getPropertyValue('content').replace(/\"/g, '');
+    props.currentBreakpoint = window.getComputedStyle(document.body, ':before').getPropertyValue('content').replace(/\"/g, '');
+    return props.currentBreakpoint;
   }
 
-  function checkMobileDevice() {
-    return mobileRE.test(navigator.userAgent);
+  function checkMobileBp() {
+    props.isMobile = props.currentBreakpoint === 'sm' || props.currentBreakpoint === 'md';
+    return props.isMobile;
   }
 
-  const getUniversalModules = () => { return props.universalController.modules(); }
-  const getPageModules = () => { return props.currentController ? props.currentController.modules() : null; }
+  function checkMobileDevice() { return mobileRE.test(navigator.userAgent); }
 
-  const onImagesLoad = () => {
-    if (props.currentController) props.currentController.initWindowLoad();
-    props.universalController.initWindowLoad();
-    return;
-  }
+  const getUniversalModules = () => { return props.universalController.modules; }
+  const getPageModules = () => { return props.currentController ? props.currentController.modules : null; }
 
   const runPageJs = () => {
     const { currentPage } = props;
@@ -76,10 +75,12 @@ const Dataminr = () => {
   return {
     init,
     checkBreakpoint,
+    checkMobileBp,
     getUniversalModules,
     getPageModules,
     currentBreakpoint: props.currentBreakpoint,
-    isMobileDevice: props.isMobileDevice
+    isMobile: props.isMobile,
+    isMobileDevice: props.isMobileDevice,
   };
 }
 

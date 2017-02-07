@@ -23,7 +23,7 @@ html {
   box-sizing: inherit;
 }
 
-body{
+body {
   background: $body-bg;
   color: $default-txt-color;
   display: flex; /* for sticky footer */
@@ -35,7 +35,6 @@ body{
   line-height: $line-height-base;
   margin: 0;
   min-height: 100%;
-  overflow-x: hidden;
   position: relative;
   text-rendering: optimizelegibility;
   -webkit-overflow-scrolling: touch;
@@ -116,7 +115,7 @@ figure {
 }
 
 hr {
-  // background: $gray-2nd;
+  background: $hr-color;
   border: none;
   box-sizing: content-box;
   display: block;
@@ -148,9 +147,6 @@ p {
   widows: 2;
 }
 
-// p + hr,
-// p + p { margin: 24px 0 0; }
-
 blockquote {
   color: $blockquote-txt-color;
   display: block;
@@ -175,10 +171,6 @@ b,
 strong {
   font-family: $font-family-bold;
   font-weight: normal;
-}
-
-.type--c3 {
-  strong { font-family: $font-family-bold; }
 }
 
 em {
