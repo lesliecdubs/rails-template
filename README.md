@@ -1,6 +1,6 @@
-## Dataminr
+## Canvas Rails Template
 
-Uses canvas-rails-template.
+Canvas Rails Template with base styles, JS module structure & breakpoint utility.
 
 Heroku Setup
 ```
