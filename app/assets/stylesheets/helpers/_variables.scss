@@ -31,12 +31,10 @@
 
 //  Font Families
 //  --------------------------------------------------
-    $font-bold-cond:          'Interstate Bold Condensed',  Helvetica, Arial, sans-serif !default;
-    $font-black-cond:         'Interstate Black Condensed', Helvetica, Arial, sans-serif !default;
-    $font-bold:               'Interstate Bold',            Helvetica, Arial, sans-serif !default;
-    $font-regular:            'Interstate Regular',         Helvetica, Arial, sans-serif !default;
-    $font-light:              'Interstate Light',           Helvetica, Arial, sans-serif !default;
-    $font-icons:              'icons'                       !default;
+    $font-bold:               Helvetica, Arial, sans-serif !default;
+    $font-regular:            Helvetica, Arial, sans-serif !default;
+    $font-light:              Helvetica, Arial, sans-serif !default;
+    // $font-icons:              'icons'                      !default;
 
 //  Font Stacks
 //  --------------------------------------------------
@@ -56,7 +54,7 @@
 
 //  Headings
 //  --------------------------------------------------
-    $headings-font-family:    $font-bold-cond      !default;
+    $headings-font-family:    $font-bold           !default;
     $headings-font-weight:    normal               !default;
     $headings-line-height:    $line-height-base    !default;
     $headings-font-color:     $black               !default;
