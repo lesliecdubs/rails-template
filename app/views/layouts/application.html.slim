@@ -1,14 +1,56 @@
+/! ---------------------------------------------------------------
+/! Site Designed and Developed by Canvas United - http://canvas.is
+/! ---------------------------------------------------------------
 doctype html
-html
+html lang="en"
   head
-    meta[charset="utf-8"]
-    meta[content="IE=edge" http-equiv="X-UA-Compatible"]
-    meta[content="width=device-width, initial-scale=1" name="viewport"]
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+
+    / meta name="description" content="#{yield_meta_tag(:description, 'Crunch is a gym that believes in making serious exercise fun by fusing fitness and entertainment and pioneering a philosophy of No Judgments.')}"
+    / meta name="twitter:card" content="#{yield_meta_tag(:twittercard, 'summary_large_image')}"
+    / meta name="twitter:site" content="#{yield_meta_tag(:twittersite, '@crunchgym')}"
+    / meta name="twitter:description" content="#{yield_meta_tag(:description, 'Crunch is a gym that believes in making serious exercise fun by fusing fitness and entertainment and pioneering a philosophy of No Judgments.')}"
+    / meta name="twitter:title" content="#{yield_title_tag}"
+    / meta name="twitter:image" content="#{yield_meta_tag(:ogimage, "#{request.base_url}/og-image.jpg")}"
+    / meta property="fb:app_id" content="TODO: ADD FB APP ID"
+    / meta property="og:url" content="#{yield_meta_tag(:ogurl, "#{request.protocol}#{request.host_with_port}#{request.fullpath}")}"
+    / meta property="og:type" content="#{yield_meta_tag(:ogtype, 'website')}"
+    / meta property="og:title" content="#{yield_title_tag}"
+    / meta property="og:description" content="#{yield_meta_tag(:description, 'Crunch is a gym that believes in making serious exercise fun by fusing fitness and entertainment and pioneering a philosophy of No Judgments.')}"
+    / meta property="og:image" content="#{yield_meta_tag(:ogimage, "#{request.base_url}/og-image.jpg")}"
+
+    / link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png"
+    / link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png"
+    / link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png"
+    / link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png"
+    / link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png"
+    / link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png"
+    / link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png"
+    / link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png"
+    / link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196"
+    / link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"
+    / link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"
+    / link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"
+    / link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128"
+    / meta name="application-name" content="Dataminr"
+    / meta name="msapplication-TileColor" content="#FFFFFF"
+    / meta name="msapplication-TileImage" content="/mstile-144x144.png"
+    / meta name="msapplication-square70x70logo" content="/mstile-70x70.png"
+    / meta name="msapplication-square150x150logo" content="/mstile-150x150.png"
+    / meta name="msapplication-wide310x150logo" content="/mstile-310x150.png"
+    / meta name="msapplication-square310x310logo" content="/mstile-310x310.png"
+
     title
-      | My Rails App
+      - if content_for?(:title)
+        = yield(:title)
+      - else
+        | Project
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    
+
   body data-js-router="#{controller_name}_#{action_name}"
     = yield

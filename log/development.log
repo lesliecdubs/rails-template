@@ -5138,3 +5138,17 @@ source=rack-timeout id=99cd216482e40de7ccbd5f979a0c8958 timeout=15000ms service=
 source=rack-timeout id=3f4c574d8f007df87f43f50193c4eac1 timeout=15000ms state=ready
 source=rack-timeout id=3f4c574d8f007df87f43f50193c4eac1 timeout=15000ms service=0ms state=active
 source=rack-timeout id=3f4c574d8f007df87f43f50193c4eac1 timeout=15000ms service=18ms state=completed
+** [Honeybadger] Initializing Honeybadger Error Tracker for Ruby. Ship it! version=3.0.0 framework=rails level=1 pid=19098
+** [Honeybadger] Entering development mode: data will not be reported. level=2 pid=19098
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from block (2 levels) in <top (required)> at /Users/lbass/Sites/personal/rails-template/config/environments/development.rb:61)
+source=rack-timeout id=959b5821fe4319ba99047b98bb38b94d timeout=15000ms state=ready
+source=rack-timeout id=959b5821fe4319ba99047b98bb38b94d timeout=15000ms service=1ms state=active
+Started GET "/" for ::1 at 2017-02-08 12:29:07 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PagesController#homepage as HTML
+  Rendering pages/homepage.html.slim within layouts/application
+  Rendered pages/homepage.html.slim within layouts/application (13.9ms)
+Completed 200 OK in 631ms (Views: 618.9ms | ActiveRecord: 0.0ms)
+
+
+source=rack-timeout id=959b5821fe4319ba99047b98bb38b94d timeout=15000ms service=727ms state=completed
